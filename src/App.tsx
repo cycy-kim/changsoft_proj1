@@ -20,7 +20,7 @@ function App() {
           size={"large"}
           onClick={handleClick}
         >
-          Learn KendoReact
+          Learn KendoReac
         </Button>
       </header>
     </div>
