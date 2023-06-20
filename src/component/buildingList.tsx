@@ -45,22 +45,23 @@ import { building } from "./../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
 import BuildingDetail from "./buildingDetail";
 
-const DATA_ITEM_KEY = "id"
+const DATA_ITEM_KEY = "id";
 const SELECTED_FIELD = "selected";
 const initialDataState = {
   skip: 0,
   take: 10,
 };
 
-const DetailComponent = (props:any) => {
+const DetailComponent = (props: any) => {
   //console.log(props.dataItem.id)
   //console.log(props.dataItem.id)
 
-  return(<div>
-   <BuildingDetail building_Id = {props.dataItem.id}/>
-  </div>)
-}
-
+  return (
+    <div>
+      <BuildingDetail building_Id={props.dataItem.id} />
+    </div>
+  );
+};
 
 const BuildingList = () => {
   const [buildingList, setBuildingList] = useState<building[]>([]);
@@ -83,7 +84,6 @@ const BuildingList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const response = await axios.get(
           //"http://192.168.0.129:8000/data/building",
           "http://10.221.71.135:8000/data/building"
@@ -91,7 +91,6 @@ const BuildingList = () => {
         const data = JSON.parse(response.data);
         //console.log(data);
         setBuildingList(data);
-        
 
         /*
         const temp: building[] = [
@@ -134,7 +133,7 @@ const BuildingList = () => {
     fetchData();
   }, []);
 
-  const onSelectionChange = (event:any) => {
+  const onSelectionChange = (event: any) => {
     const newSelectedState = getSelectedState({
       event,
       selectedState: selectedState,
@@ -143,7 +142,7 @@ const BuildingList = () => {
     setSelectedState(newSelectedState);
     //console.log(selectedState)
   };
-  const onKeyDown = (event:any) => {
+  const onKeyDown = (event: any) => {
     const newSelectedState = getSelectedStateFromKeyDown({
       event,
       selectedState: selectedState,
@@ -152,7 +151,7 @@ const BuildingList = () => {
     setSelectedState(newSelectedState);
     //console.log(selectedState)
   };
-  const expandChange = (event:any) => {
+  const expandChange = (event: any) => {
     event.dataItem.expanded = event.value;
     setCategories([...categories]);
     if (!event.value || event.dataItem.details) {
@@ -160,7 +159,7 @@ const BuildingList = () => {
     }
   };
   return (
-    <div className = "building-list-container">
+    <div className="building-list-container">
       <Grid
         style={{ height: "400px" }}
         data={buildingList.slice(page.skip, page.take + page.skip)}
