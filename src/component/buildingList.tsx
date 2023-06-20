@@ -43,6 +43,7 @@ import {
 import axios from "axios";
 import { building } from "./../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
+import buildingDetail from "./buildingDetail";
 
 const DATA_ITEM_KEY = "id"
 const SELECTED_FIELD = "selected";
@@ -56,7 +57,6 @@ const DetailComponent = (props:any) => {
   //console.log(props.dataItem.id)
 
   return(<div>
-    
   </div>)
 }
 
@@ -153,14 +153,13 @@ const BuildingList = () => {
   };
   const expandChange = (event:any) => {
     event.dataItem.expanded = event.value;
-    let categoryID = event.dataItem.CategoryID;
     setCategories([...categories]);
     if (!event.value || event.dataItem.details) {
       return;
     }
   };
   return (
-    <div>
+    <div className = "building-list-container">
       <Grid
         style={{ height: "400px" }}
         data={buildingList.slice(page.skip, page.take + page.skip)}
