@@ -20,7 +20,7 @@ export const items: MenuItem[] = [
     icon: "home",
   },
   {
-    text: "BuildingList",
+    text: "Buildings",
     selected: false,
     route: "/building_list",
     icon: "k-i-grid",
@@ -53,8 +53,8 @@ export const NavigationLayout = (props: any) => {
       <div className="custom-toolbar">
         <Button icon="menu" onClick={handleClick} className="menu-button" />
 
-        <span className={selected === "BuildingList" ? "selected-text" : ""}>
-          {selected === "BuildingList" ? "BuildingList" : "Home"}
+        <span className={selected === "Buildings" ? "selected-text" : ""}>
+          {selected === "Buildings" ? "Buildings" : "Home"}
         </span>
       </div>
 
