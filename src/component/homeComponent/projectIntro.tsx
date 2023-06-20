@@ -51,7 +51,7 @@ const ProjectIntro = () => {
       try {
         const response = await axios.get(
           //"http://192.168.0.129:8000/data/building",
-          "http://10.221.71.135:8000/data/project_num"
+          "http://10.221.71.135:8000/data/building_totalnum"
         );
         const data = JSON.parse(response.data);
         console.log(data);
