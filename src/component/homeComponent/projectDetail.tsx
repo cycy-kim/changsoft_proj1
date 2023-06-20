@@ -42,34 +42,32 @@ import {
 } from "@progress/kendo-react-data-tools";
 import axios from "axios";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
-import "./../../styles/projectIntro.scss"
 
-const ProjectIntro = () => {
-  const [projectNum, setProjectNum] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          //"http://192.168.0.129:8000/data/building",
-          "http://10.221.71.135:8000/data/project_num"
-        );
-        const data = JSON.parse(response.data);
-        console.log(data);
-        setProjectNum(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
-    fetchData();
-  }, []);
 
-  return (
-    <div>
-      <div className="total-project-num">{projectNum}</div>
-    </div>
-  );
+const ProjectDetail = () => {
+    const [buildingNums, SetBuildingNums] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get(
+              //"http://192.168.0.129:8000/data/building",
+              "http://10.221.71.135:8000/data/building_totalnum"
+            );
+            const data = JSON.parse(response.data);
+            console.log(data);
+            SetBuildingNums(data);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+      
+    return (<div>
+        
+    </div>)
 };
-
-export default ProjectIntro;
