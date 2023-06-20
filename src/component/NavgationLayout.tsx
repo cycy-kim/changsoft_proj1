@@ -3,7 +3,6 @@ import { Button } from "@progress/kendo-react-buttons";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
 import { Icon } from "@progress/kendo-react-common";
-//import "./../styles/NavigationLayout.scss";
 
 interface MenuItem {
   text: string;
