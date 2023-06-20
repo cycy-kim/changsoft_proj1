@@ -10,7 +10,7 @@ const tiles = [
       colSpan: 1,
       rowSpan: 1,
     },
-    header: "Tile 1",
+    header: "Number of total projects",
     body: <ProjectIntro></ProjectIntro>,
   },
   {
