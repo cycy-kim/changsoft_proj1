@@ -1,7 +1,6 @@
 import React from "react";
 import kendoka from "./kendoka.svg";
 import "./App.css";
-import BuildingList from "./component/buildingList";
 import { Route, Routes } from "react-router-dom";
 import { NavigationLayout } from "./component/NavgationLayout"
 import { Home } from "./pages/Home";
