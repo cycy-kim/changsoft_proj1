@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import { Button } from "@progress/kendo-react-buttons";
-import { useLocation, useNavigate, Outlet } from "react-router-dom";
-import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
-=======
 import React, {
   useState,
   useEffect,
@@ -19,8 +13,10 @@ import {
 import axios from "axios";
 import { building } from "./../interface/building";
 import BuildingDetail from "./buildingDetail";
+import { Button } from "@progress/kendo-react-buttons";
+import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 //import './../styles/buildingList.scss'
->>>>>>> 0db49c97e88c56d58e34946d42c042907dec42b0
 
 interface MenuItem {
   text: string;

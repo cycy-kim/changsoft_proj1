@@ -3,10 +3,7 @@ import { Button } from "@progress/kendo-react-buttons";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
 import { Icon } from "@progress/kendo-react-common";
-<<<<<<< HEAD
-=======
 //import "./../styles/NavigationLayout.scss";
->>>>>>> 0db49c97e88c56d58e34946d42c042907dec42b0
 
 interface MenuItem {
   text: string;
@@ -54,7 +51,9 @@ export const NavigationLayout = (props: any) => {
   return (
     <div>
       <div className="custom-toolbar">
-        <Button icon="menu" onClick={handleClick} className="menu-button" />
+        <div className="menu-button-container">
+          <Button icon="menu" onClick={handleClick} className="menu-button" />
+        </div>
 
         <span className={selected === "BuildingList" ? "selected-text" : ""}>
           {selected === "BuildingList" ? "BuildingList" : "Home"}
