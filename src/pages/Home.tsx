@@ -1,6 +1,7 @@
 import React from 'react';
 import { TileLayout } from "@progress/kendo-react-layout";
 import { Button } from '@progress/kendo-react-buttons';
+import ProjectIntro from '../component/homeComponent/projectIntro';
 
 const tiles = [
   {
@@ -10,7 +11,7 @@ const tiles = [
       rowSpan: 1,
     },
     header: "Tile 1",
-    body: <Button>Button 1</Button>,
+    body: <ProjectIntro></ProjectIntro>,
   },
   {
     defaultPosition: {
