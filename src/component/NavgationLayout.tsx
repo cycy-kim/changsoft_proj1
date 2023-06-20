@@ -48,10 +48,6 @@ export const NavigationLayout = (props: any) => {
     }
   }, [location.pathname]);
 
-  const handleHomeClick = () => {
-    navigate("/");
-  };
-
   return (
     <div>
       <div className="custom-toolbar">
