@@ -52,10 +52,11 @@ const initialDataState = {
 };
 
 const DetailComponent = (props:any) => {
-  console.log(props.selectedNum)
+  //console.log(props.dataItem.id)
+  //console.log(props.dataItem.id)
 
   return(<div>
-    props.selectedNum
+    
   </div>)
 }
 
@@ -65,6 +66,7 @@ const BuildingList = () => {
   const [page, setPage] = React.useState(initialDataState);
   const [pageSizeValue, setPageSizeValue] = React.useState();
   const [selectedState, setSelectedState] = React.useState({});
+  const [categories, setCategories] = React.useState([]);
 
   const pageChange = (event: any) => {
     const targetEvent = event.targetEvent;
@@ -86,7 +88,7 @@ const BuildingList = () => {
           "http://10.221.71.135:8000/data/building"
         );
         const data = JSON.parse(response.data);
-        console.log(data);
+        //console.log(data);
         setBuildingList(data);
         
 
@@ -138,7 +140,7 @@ const BuildingList = () => {
       dataItemKey: DATA_ITEM_KEY,
     });
     setSelectedState(newSelectedState);
-    console.log(selectedState)
+    //console.log(selectedState)
   };
   const onKeyDown = (event:any) => {
     const newSelectedState = getSelectedStateFromKeyDown({
@@ -147,9 +149,16 @@ const BuildingList = () => {
       dataItemKey: DATA_ITEM_KEY,
     });
     setSelectedState(newSelectedState);
-    console.log(selectedState)
+    //console.log(selectedState)
   };
-
+  const expandChange = (event:any) => {
+    event.dataItem.expanded = event.value;
+    let categoryID = event.dataItem.CategoryID;
+    setCategories([...categories]);
+    if (!event.value || event.dataItem.details) {
+      return;
+    }
+  };
   return (
     <div>
       <Grid
@@ -171,7 +180,9 @@ const BuildingList = () => {
         onSelectionChange={onSelectionChange}
         onKeyDown={onKeyDown}
         onPageChange={pageChange}
+        expandField="expanded"
         detail={DetailComponent}
+        onExpandChange={expandChange}
       >
         <GridColumn field="id" />
         <GridColumn field="building_name" />
