@@ -14,6 +14,7 @@ import axios from "axios";
 import { building } from "./../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
 import BuildingDetail from "./buildingDetail";
+import ProjectIntro from "./homeComponent/projectIntro"
 
 const DATA_ITEM_KEY = "id";
 const SELECTED_FIELD = "selected";
