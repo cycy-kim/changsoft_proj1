@@ -45,12 +45,10 @@ import React, {
   import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
   
 
-const buildingDetail = ()=>{
-
-
+const BuildingDetail = (props: any)=>{
     return (<div>
-
+        {props.building_Id}를 선택한 BuildingDetail 입니다ㅎ
     </div>)
 }
 
-export default buildingDetail;
+export default BuildingDetail;

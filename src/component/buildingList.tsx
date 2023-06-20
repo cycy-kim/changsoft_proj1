@@ -43,7 +43,7 @@ import {
 import axios from "axios";
 import { building } from "./../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
-import buildingDetail from "./buildingDetail";
+import BuildingDetail from "./buildingDetail";
 
 const DATA_ITEM_KEY = "id"
 const SELECTED_FIELD = "selected";
@@ -57,6 +57,7 @@ const DetailComponent = (props:any) => {
   //console.log(props.dataItem.id)
 
   return(<div>
+   <BuildingDetail building_Id = {props.dataItem.id}/>
   </div>)
 }
 
