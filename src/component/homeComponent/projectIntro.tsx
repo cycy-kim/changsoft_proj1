@@ -42,6 +42,7 @@ import {
 } from "@progress/kendo-react-data-tools";
 import axios from "axios";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
+import "./../../styles/projectIntro.scss"
 
 const ProjectIntro = () => {
   const [projectNum, setProjectNum] = useState(0);
