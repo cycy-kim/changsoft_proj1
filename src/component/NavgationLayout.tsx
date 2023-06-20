@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@progress/kendo-react-buttons";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
-import "./../styles/NavigationLayout.scss";
+import { Icon } from "@progress/kendo-react-common";
 
 interface MenuItem {
   text: string;
