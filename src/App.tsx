@@ -1,13 +1,20 @@
-import React from 'react';
-import { Button } from '@progress/kendo-react-buttons';
-import kendoka from './kendoka.svg';
-import './App.css';
-import BuildingList from './component/buildingList';
+import React from "react";
+import kendoka from "./kendoka.svg";
+import "./App.css";
+import BuildingList from "./component/buildingList";
+import { Route, Routes } from "react-router-dom";
+import { NavigationLayout } from "./component/NavgationLayout"
+import { Home } from "./pages/Home";
+import { Buildings } from "./pages/Buildings";
 
 function App() {
   return (
     <div className="App">
-      <BuildingList />
+      <NavigationLayout>
+        <Routes>
+          <Route path="/bulding_list" element={<Buildings />} />
+        </Routes>
+      </NavigationLayout>
     </div>
   );
 }
