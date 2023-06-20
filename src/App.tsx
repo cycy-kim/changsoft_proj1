@@ -1,8 +1,6 @@
 import React from "react";
-import kendoka from "./kendoka.svg";
 import "./App.css";
-import BuildingList from "./component/buildingList";
-import { Route,Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { NavigationLayout } from "./component/NavgationLayout";
 import { Home } from "./pages/Home";
 import { Buildings } from "./pages/Buildings";
@@ -12,6 +10,7 @@ function App() {
     <div className="App">
         <NavigationLayout>
           <Routes>
+            <Route path="/building_list" element={<Home />} />
             <Route path="/building_list" element={<Buildings />} />
           </Routes>
         </NavigationLayout>
