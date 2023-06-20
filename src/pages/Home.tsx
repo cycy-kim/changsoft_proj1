@@ -2,6 +2,7 @@ import React from 'react';
 import { TileLayout } from "@progress/kendo-react-layout";
 import { Button } from '@progress/kendo-react-buttons';
 import ProjectIntro from '../component/homeComponent/projectIntro';
+import ProjectDetail from '../component/homeComponent/projectDetail';
 
 const tiles = [
   {
@@ -20,7 +21,7 @@ const tiles = [
       rowSpan: 1,
     },
     header: "Tile 2",
-    body: <Button>Button 2</Button>,
+    body: <ProjectDetail></ProjectDetail>,
   },
   {
     defaultPosition: {
