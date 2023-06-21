@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@progress/kendo-react-buttons";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
-import { Icon } from "@progress/kendo-react-common";
 import "./../styles/NavigationLayout.scss";
 
 interface MenuItem {
@@ -24,6 +23,12 @@ export const items: MenuItem[] = [
     selected: false,
     route: "/building_list",
     icon: "k-i-grid",
+  },
+  {
+    text: "User",
+    selected: false,
+    route: "/user_info",
+    icon: "user",
   },
 ];
 
@@ -48,13 +53,25 @@ export const NavigationLayout = (props: any) => {
     }
   }, [location.pathname]);
 
+  const renderSelectedText = () => {
+    if (selected === "User") {
+      return "User";
+    } else {
+      return selected === "Buildings" ? "Buildings" : "Home";
+    }
+  };
+
   return (
     <div>
       <div className="custom-toolbar">
+        <div className="logo">
+          {/* 원하는 로고를 여기에 추가 */}
+        </div>
+
         <Button icon="menu" onClick={handleClick} className="menu-button" />
 
         <span className={selected === "Buildings" ? "selected-text" : ""}>
-          {selected === "Buildings" ? "Buildings" : "Home"}
+          {renderSelectedText()}
         </span>
       </div>
 

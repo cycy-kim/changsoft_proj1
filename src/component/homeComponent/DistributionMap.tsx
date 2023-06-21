@@ -5,22 +5,6 @@ import React, {
   JSXElementConstructor,
 } from "react";
 import {
-  filterBy,
-  CompositeFilterDescriptor,
-  GroupDescriptor,
-  groupBy,
-  GroupResult,
-  State,
-  DataResult,
-  process,
-  AggregateDescriptor,
-} from "@progress/kendo-data-query";
-import {
-  setExpandedState,
-  setGroupIds,
-} from "@progress/kendo-react-data-tools";
-import axios from "axios";
-import {
   Map,
   TileUrlTemplateArgs,
   MapLayers,
@@ -33,6 +17,7 @@ import Geocode from "react-geocode";
 import urlPrefix from "./../../resource/URL_prefix.json";
 import {location} from "./../../interface/location"
 import { coordinate } from "../../interface/coordinate";
+import axios from "axios";
 
 const sample_addr = "성내천로47길 38";
 const req_url = `https://nominatim.openstreetmap.org/search?format=json&q=${sample_addr}`;
