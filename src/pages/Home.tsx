@@ -1,9 +1,10 @@
 import React from 'react';
 import { TileLayout } from "@progress/kendo-react-layout";
 import { Button } from '@progress/kendo-react-buttons';
-import ProjectIntro from '../component/homeComponent/projectIntro';
-import ProjectDetail from '../component/homeComponent/projectDetail';
-import DistributionMap from '../component/homeComponent/distributionMap';
+import ProjectIntro from './../component/homeComponent/projectIntro';
+import ProjectDetail from './../component/homeComponent/projectDetail';
+import DistributionMap from './../component/homeComponent/distributionMap';
+import UsagePercentage from './../component/homeComponent/usagePercentage';
 
 interface Tile {
   defaultPosition: {
@@ -43,7 +44,7 @@ const tiles: Tile[] = [
       rowSpan: 1,
     },
     header: "Tile 3",
-    body: <Button>Button 3</Button>,
+    body: <UsagePercentage/>,
   },
   {
     defaultPosition: {
