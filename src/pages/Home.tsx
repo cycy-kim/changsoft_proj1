@@ -3,7 +3,7 @@ import { TileLayout } from "@progress/kendo-react-layout";
 import { Button } from '@progress/kendo-react-buttons';
 import ProjectIntro from '../component/homeComponent/projectIntro';
 import ProjectDetail from '../component/homeComponent/projectDetail';
-import DistributionMap from '../component/homeComponent/DistributionMap';
+import DistributionMap from '../component/homeComponent/distributionMap';
 
 const tiles = [
   {
