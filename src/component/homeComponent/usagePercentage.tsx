@@ -21,4 +21,6 @@ import {
 } from "@progress/kendo-react-data-tools";
 import axios from "axios";
 
-const UsagePercentage = () => {};
+const UsagePercentage = () => {
+    
+};
