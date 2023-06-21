@@ -5,6 +5,7 @@ import {
 import axios from "axios";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { projectdetail } from "./../../interface/projectdetail_interface";
+import urlPrefix from "./../../resource/URL_prefix.json"
 
 const ProjectDetail = () => {
   //onst [buildingNums, setBuildingNums] = useState();
@@ -16,7 +17,7 @@ const ProjectDetail = () => {
       try {
         const response_num = await axios.get(
           //"http://192.168.0.129:8000/data/building",
-          "http://10.221.71.135:8000/data/building_totalnum"
+          urlPrefix.IP_port + "/data/building_totalnum"
         );
         const data: projectdetail[] = JSON.parse(response_num.data);
 

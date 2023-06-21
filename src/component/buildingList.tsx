@@ -15,6 +15,7 @@ import { building } from "./../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
 import BuildingDetail from "./buildingDetail";
 import ProjectIntro from "./homeComponent/projectIntro"
+import urlPrefix from "./../resource/URL_prefix.json"
 
 const DATA_ITEM_KEY = "id";
 const SELECTED_FIELD = "selected";
@@ -57,7 +58,7 @@ const BuildingList = () => {
       try {
         const response = await axios.get(
           //"http://192.168.0.129:8000/data/building",
-          "http://10.221.71.135:8000/data/building"
+          urlPrefix.IP_port + "/data/building"
         );
         const data = JSON.parse(response.data);
         //console.log(data);

@@ -6,6 +6,7 @@ import {
   MapTileLayer,
   MapMarkerLayer,
 } from "@progress/kendo-react-map";
+import urlPrefix from "./../../resource/URL_prefix.json"
 
 const tileSubdomains = ["a", "b", "c"];
 const tileUrl = (e: TileUrlTemplateArgs) =>

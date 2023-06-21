@@ -4,6 +4,7 @@ import {
 } from "react";
 import axios from "axios";
 import "./../../styles/projectIntro.scss"
+import urlPrefix from "./../../resource/URL_prefix.json"
 
 const ProjectIntro = () => {
   const [projectNum, setProjectNum] = useState(0);
@@ -13,7 +14,7 @@ const ProjectIntro = () => {
       try {
         const response = await axios.get(
           //"http://192.168.0.129:8000/data/building",
-          "http://10.221.71.135:8000/data/project_num"
+          urlPrefix.IP_port + "/data/project_num"
         );
         const data = JSON.parse(response.data);
         //console.log(data);
