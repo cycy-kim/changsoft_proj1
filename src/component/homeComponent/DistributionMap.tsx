@@ -13,7 +13,6 @@ import {
   MapTileLayer,
   MapMarkerLayer,
 } from "@progress/kendo-react-map";
-import Geocode from "react-geocode";
 import urlPrefix from "../../resource/URL_prefix.json";
 import {location} from "../../interface/location"
 import { coordinate } from "../../interface/coordinate";
