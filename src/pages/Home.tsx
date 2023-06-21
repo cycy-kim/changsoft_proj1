@@ -5,7 +5,19 @@ import ProjectIntro from '../component/homeComponent/projectIntro';
 import ProjectDetail from '../component/homeComponent/projectDetail';
 import DistributionMap from '../component/homeComponent/distributionMap';
 
-const tiles = [
+interface Tile {
+  defaultPosition: {
+    col: number;
+    colSpan: number;
+    rowSpan: number;
+  };
+  header: string;
+  body: React.ReactNode;
+  reorderable?: boolean;
+  draggable?: boolean;
+}
+
+const tiles: Tile[] = [
   {
     defaultPosition: {
       col: 1,
@@ -13,7 +25,7 @@ const tiles = [
       rowSpan: 1,
     },
     header: "Number of total projects",
-    body: <ProjectIntro></ProjectIntro>,
+    body: <ProjectIntro />,
   },
   {
     defaultPosition: {
@@ -22,7 +34,7 @@ const tiles = [
       rowSpan: 1,
     },
     header: "Tile 2",
-    body: <ProjectDetail></ProjectDetail>,
+    body: <ProjectDetail />,
   },
   {
     defaultPosition: {
@@ -85,14 +97,16 @@ const tiles = [
       rowSpan: 1,
     },
     header: "Distribution Map",
-    body: <DistributionMap></DistributionMap>,
+    body: <DistributionMap />,
+    reorderable: false,
+    draggable: false,
   },
 ];
 
 export const Home: React.FC = () => {
   return (
     <div className="building-dashboard-container">
-      <TileLayout columns={3} items={tiles}></TileLayout>
+      <TileLayout columns={3} items={tiles} />
     </div>
   );
 };
