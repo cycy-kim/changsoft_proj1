@@ -42,34 +42,55 @@ import {
 } from "@progress/kendo-react-data-tools";
 import axios from "axios";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
-
-
-
+import { DropDownList } from "@progress/kendo-react-dropdowns";
+import { projectdetail } from "./../../interface/projectdetail_interface";
 
 const ProjectDetail = () => {
-    const [buildingNums, SetBuildingNums] = useState();
+  //onst [buildingNums, setBuildingNums] = useState();
+  const [selected, setSelected] = useState<string>("");
+  const [projectList, setProjectList] = useState<projectdetail[]>([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await axios.get(
-              //"http://192.168.0.129:8000/data/building",
-              "http://10.221.71.135:8000/data/building_totalnum"
-            );
-            const data = JSON.parse(response.data);
-            console.log(data);
-            SetBuildingNums(data);
-          } catch (error) {
-            console.error(error);
-          }
-        };
-    
-        fetchData();
-      }, []);
-      
-    return (<div>
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response_num = await axios.get(
+          //"http://192.168.0.129:8000/data/building",
+          "http://10.221.71.135:8000/data/building_totalnum"
+        );
+        const data: projectdetail[] = JSON.parse(response_num.data);
 
-    </div>)
+        //console.log(data);
+        setProjectList(data);
+        setSelected(data[0].project_name);
+        console.log(projectList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleChange = (event: any) => {
+    setSelected(event.target.value);
+  };
+
+  return (
+    <div>
+      <DropDownList
+        data={projectList.map((item) => item.project_name)}
+        value={selected}
+        onChange={handleChange}
+        style={{
+          width: "300px",
+        }}
+      />
+      <br />
+      <div>
+        {projectList.find((item: projectdetail) => item.project_name === selected)?.id}번 선택ㅎ
+      </div>
+    </div>
+  );
 };
 
 export default ProjectDetail;

@@ -55,7 +55,7 @@ const ProjectIntro = () => {
           "http://10.221.71.135:8000/data/project_num"
         );
         const data = JSON.parse(response.data);
-        console.log(data);
+        //console.log(data);
         setProjectNum(data);
       } catch (error) {
         console.error(error);
