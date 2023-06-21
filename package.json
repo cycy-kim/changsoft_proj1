@@ -27,6 +27,7 @@
     "@progress/kendo-react-layout": "^5.14.1",
     "@progress/kendo-react-listbox": "^5.14.1",
     "@progress/kendo-react-listview": "^5.14.1",
+    "@progress/kendo-react-map": "^5.14.1",
     "@progress/kendo-react-notification": "^5.14.1",
     "@progress/kendo-react-pdf": "^5.14.1",
     "@progress/kendo-react-pdf-viewer": "^5.14.1",

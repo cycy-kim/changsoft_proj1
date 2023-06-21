@@ -3,6 +3,7 @@ import { TileLayout } from "@progress/kendo-react-layout";
 import { Button } from '@progress/kendo-react-buttons';
 import ProjectIntro from '../component/homeComponent/projectIntro';
 import ProjectDetail from '../component/homeComponent/projectDetail';
+import DistributionMap from '../component/homeComponent/DistributionMap';
 
 const tiles = [
   {
@@ -29,8 +30,8 @@ const tiles = [
       colSpan: 1,
       rowSpan: 1,
     },
-    header: "Tile 3",
-    body: <Button>Button 3</Button>,
+    header: "Distribution Map",
+    body: <DistributionMap></DistributionMap>,
   },
   {
     defaultPosition: {
