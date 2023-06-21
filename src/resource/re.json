@@ -1,0 +1,20 @@
+[
+    {
+        "place_id": 203641335,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "way",
+        "osm_id": 433819788,
+        "boundingbox": [
+            "37.494949",
+            "37.4950413",
+            "127.1575823",
+            "127.1580819"
+        ],
+        "lat": "37.4950413",
+        "lon": "127.1580819",
+        "display_name": "성내천로47길, 마천1동, 송파구, 서울, 05763, 대한민국",
+        "class": "highway",
+        "type": "residential",
+        "importance": 0.21000999999999995
+    }
+]
