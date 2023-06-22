@@ -39,8 +39,8 @@ export const Home: React.FC = () => {
   >([
     { col: 1, colSpan: 1, rowSpan: 1 },
     { col: 1, colSpan: 1, rowSpan: 1 },
-    { col: 2, colSpan: 3, rowSpan: 1 },
-    { col: 2, colSpan: 3, rowSpan: 1 },
+    { col: 2, colSpan: 3, rowSpan: 2 },
+    { col: 2, colSpan: 3, rowSpan: 2 },
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
