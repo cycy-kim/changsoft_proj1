@@ -56,9 +56,9 @@ export const Home: React.FC = () => {
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total Building
     { col: 2, colSpan: 2, rowSpan: 2 }, // Map
     { col: 4, colSpan: 1, rowSpan: 2 }, // Local %
-    { col: 1, colSpan: 1, rowSpan: 2 }, // 
-    { col: 2, colSpan: 1, rowSpan: 2 }, // 
-    { col: 3, colSpan: 2, rowSpan: 2 }, // 
+    { col: 1, colSpan: 1, rowSpan: 2 }, // Company %
+    { col: 2, colSpan: 1, rowSpan: 2 }, // Usage %
+    { col: 3, colSpan: 2, rowSpan: 2 }, // Total Area
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
