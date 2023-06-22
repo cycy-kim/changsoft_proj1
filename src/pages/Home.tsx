@@ -43,6 +43,14 @@ const tiles: Tile[] = [
     body: <UsagePercentage />,
   },
   {
+    header: "Empty",
+    body: <Button></Button>,
+  },
+  {
+    header: "Empty",
+    body: <Button></Button>,
+  },
+  {
     header: "Total Area",
     body: <TotalArea />,
   },
@@ -58,7 +66,9 @@ export const Home: React.FC = () => {
     { col: 4, colSpan: 1, rowSpan: 2 }, // Local %
     { col: 1, colSpan: 1, rowSpan: 2 }, // Company %
     { col: 2, colSpan: 1, rowSpan: 2 }, // Usage %
-    { col: 3, colSpan: 2, rowSpan: 2 }, // Total Area
+    { col: 3, colSpan: 1, rowSpan: 2 }, // Button
+    { col: 4, colSpan: 1, rowSpan: 2 }, // Button
+    { col: 1, colSpan: 4, rowSpan: 2 }, // Total Area
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
