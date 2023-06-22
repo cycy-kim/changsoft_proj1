@@ -8,6 +8,8 @@ import TotalProject from "./../component/homeComponent/projectIntro";
 import ProjectDetail from "./../component/homeComponent/projectDetail";
 import DistributionMap from "./../component/homeComponent/distributionMap";
 import UsagePercentage from "./../component/homeComponent/usagePercentage";
+import CompanyPercentage from "../component/homeComponent/companyPercantage";
+import LocalPercentage from "../component/homeComponent/localPercentage";
 
 interface Tile {
   header: string;
