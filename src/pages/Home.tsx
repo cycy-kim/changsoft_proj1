@@ -30,8 +30,16 @@ const tiles: Tile[] = [
     body: <DistributionMap />,
   },
   {
+    header: "Company Percentage",
+    body: <CompanyPercentage />,
+  },
+  {
     header: "Usage Percentage",
     body: <UsagePercentage />,
+  },
+  {
+    header: "Local Percentage",
+    body: <LocalPercentage />,
   },
 ];
 
@@ -42,7 +50,9 @@ export const Home: React.FC = () => {
     { col: 1, colSpan: 1, rowSpan: 1 },
     { col: 1, colSpan: 1, rowSpan: 1 },
     { col: 2, colSpan: 3, rowSpan: 2 },
-    { col: 2, colSpan: 3, rowSpan: 2 },
+    { col: 2, colSpan: 1, rowSpan: 2 },
+    { col: 3, colSpan: 1, rowSpan: 2 },
+    { col: 4, colSpan: 1, rowSpan: 2 },
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
