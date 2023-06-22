@@ -100,7 +100,7 @@ const tiles= [
       rowSpan: 1,
     },
     header: "Tile 9",
-    body: <Button>Button 4</Button>,
+    body: <Button>Button 9</Button>,
   },
 ];
 
