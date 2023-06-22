@@ -10,6 +10,7 @@ import DistributionMap from "./../component/homeComponent/distributionMap";
 import UsagePercentage from "./../component/homeComponent/usagePercentage";
 import CompanyPercentage from "../component/homeComponent/companyPercantage";
 import LocalPercentage from "../component/homeComponent/localPercentage";
+import TotalArea from "../component/homeComponent/totalArea";
 
 interface Tile {
   header: string;
@@ -41,6 +42,10 @@ const tiles: Tile[] = [
     header: "Local Percentage",
     body: <LocalPercentage />,
   },
+  {
+    header: "Total Area",
+    body: <TotalArea />,
+  },
 ];
 
 export const Home: React.FC = () => {
@@ -53,6 +58,7 @@ export const Home: React.FC = () => {
     { col: 2, colSpan: 1, rowSpan: 2 },
     { col: 3, colSpan: 1, rowSpan: 2 },
     { col: 4, colSpan: 1, rowSpan: 2 },
+    { col: 1, colSpan: 1, rowSpan: 2 },
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
