@@ -25,13 +25,11 @@ const TotalArea = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            
-            const response = await axios.get(urlPrefix.IP_port + "/dashboard/project");
+            const response = await axios.get(urlPrefix.IP_port + "/project/project_name,total_area");
             const data = response.data;
-            setTotalarea(data);
-            
             console.log(data)
-            setTotalarea(data);
+            //setTotalarea(data);
+            
           } catch (error) {
             console.error(error);
           }

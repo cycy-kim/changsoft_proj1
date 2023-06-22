@@ -37,12 +37,9 @@ const UsagePercentage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/usage_ratio");
         const data = response.data;
         setPercentages(data);
-        
-        console.log(data)
 
         //setPercentages(test_data_percentage);
       } catch (error) {

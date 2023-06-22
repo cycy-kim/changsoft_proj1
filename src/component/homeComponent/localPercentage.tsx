@@ -23,7 +23,6 @@ const LocalPercentage = ()=>{
             const data = response.data;
             setPercentages(data);
             
-            console.log(data)
             setPercentages(data);
           } catch (error) {
             console.error(error);
