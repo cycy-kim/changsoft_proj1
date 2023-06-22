@@ -5,7 +5,7 @@ import { projectdetail } from "./../../interface/projectdetail_interface";
 import urlPrefix from "./../../resource/URL_prefix.json";
 
 const ProjectDetail = () => {
-  const [buildingNums, setBuildingNums] = useState(0);
+  const [buildingNum, setBuildingNum] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +16,7 @@ const ProjectDetail = () => {
         );
         
         const data  = JSON.parse(response_num.data);
-        setBuildingNums(data);
+        setBuildingNum(data);
       } catch (error) {
         console.error(error);
       }
@@ -27,7 +27,7 @@ const ProjectDetail = () => {
 
   return (
     <div>
-      {buildingNums}
+      {buildingNum}
     </div>
   );
 };
