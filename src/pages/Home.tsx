@@ -55,7 +55,10 @@ export const Home: React.FC = () => {
         rowHeight={255}
         positions={data}
         gap={{ rows: 10, columns: 10 }}
-        items={tiles}
+        items={tiles.map((tile, index) => ({
+          ...tile,
+          reorderable: index !== 2, // Set reorderable to false for Distribution Map tile
+        }))}
         onReposition={handleReposition}
       />
     </div>
