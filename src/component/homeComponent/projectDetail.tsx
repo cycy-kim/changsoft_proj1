@@ -12,7 +12,7 @@ const ProjectDetail = () => {
       try {
         
         const response_num = await axios.get(
-          urlPrefix.IP_port + "/building/count"
+          urlPrefix.IP_port + "/building_count"
         );
         
         const data  = JSON.parse(response_num.data);
