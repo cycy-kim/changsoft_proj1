@@ -63,14 +63,23 @@ export const NavigationLayout = (props: any) => {
 
   return (
     <div>
-      <div className="custom-toolbar">
-        <div className="logo">
-          {/* 원하는 로고를 여기에 추가 */}
-        </div>
+      <div
+        className="custom-toolbar"
+        style={{ backgroundColor: "rgb(22, 48, 138)" }}
+      >
+        <div className="logo">{/* 원하는 로고를 여기에 추가 */}</div>
 
-        <Button icon="menu" onClick={handleClick} className="menu-button" />
+        <Button
+          icon="menu"
+          onClick={handleClick}
+          className="menu-button"
+          style={{ color: "grey", backgroundColor: "white" }}
+        />
 
-        <span className={selected === "Projects" ? "selected-text" : ""}>
+        <span
+          className={selected === "Projects" ? "selected-text" : ""}
+          style={{ color: "white" }}
+        >
           {renderSelectedText()}
         </span>
       </div>
