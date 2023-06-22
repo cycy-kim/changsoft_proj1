@@ -5,17 +5,6 @@ import React, {
   JSXElementConstructor,
 } from "react";
 import {
-  filterBy,
-  CompositeFilterDescriptor,
-  GroupDescriptor,
-  groupBy,
-  GroupResult,
-  State,
-  DataResult,
-  process,
-  AggregateDescriptor,
-} from "@progress/kendo-data-query";
-import {
   Chart,
   ChartLegend,
   ChartSeries,
@@ -29,16 +18,17 @@ import {
 import "hammerjs";
 import axios from "axios";
 import { usagePercent_interface } from "../../interface/usagePercent_interface";
+import urlPrefix from "./../../resource/URL_prefix.json";
 
 const labelContent = (e: any) =>
   e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
 
 const test_data_percentage = [
-  { sub_building_type: "type1", COUNT: 150 },
-  { sub_building_type: "type2", COUNT: 100 },
-  { sub_building_type: "type3", COUNT: 80 },
-  { sub_building_type: "type4", COUNT: 200 },
-  { sub_building_type: "type5", COUNT: 300 },
+  { sub_building_type: "type1", count: 150 },
+  { sub_building_type: "type2", count: 100 },
+  { sub_building_type: "type3", count: 80 },
+  { sub_building_type: "type4", count: 200 },
+  { sub_building_type: "type5", count: 300 },
 ];
 
 const UsagePercentage = () => {
@@ -47,12 +37,12 @@ const UsagePercentage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        /*
-        const response = await axios.get("");
+        
+        const response = await axios.get(urlPrefix.IP_port + "/dashboard/project");
         const data1 = response.data;
         setPercentages(data1);
-        */
-
+        
+        console.log(data1)
         setPercentages(test_data_percentage);
       } catch (error) {
         console.error(error);
