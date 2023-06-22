@@ -1,9 +1,9 @@
 import React from 'react';
 import BuildingList from "./../component/buildingList";
 
-export const Buildings: React.FC = () => {
+export const Projects: React.FC = () => {
   return (
-    <div className="home-container">
+    <div className="projects">
         <BuildingList />
     </div>
   );
