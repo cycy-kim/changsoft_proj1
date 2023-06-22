@@ -19,9 +19,9 @@ export const items: MenuItem[] = [
     icon: "home",
   },
   {
-    text: "Buildings",
+    text: "Projects",
     selected: false,
-    route: "/building_list",
+    route: "/projects",
     icon: "k-i-grid",
   },
   {
@@ -57,7 +57,7 @@ export const NavigationLayout = (props: any) => {
     if (selected === "User") {
       return "User";
     } else {
-      return selected === "Buildings" ? "Buildings" : "Home";
+      return selected === "Projects" ? "Projects" : "Home";
     }
   };
 
@@ -70,7 +70,7 @@ export const NavigationLayout = (props: any) => {
 
         <Button icon="menu" onClick={handleClick} className="menu-button" />
 
-        <span className={selected === "Buildings" ? "selected-text" : ""}>
+        <span className={selected === "Projects" ? "selected-text" : ""}>
           {renderSelectedText()}
         </span>
       </div>
