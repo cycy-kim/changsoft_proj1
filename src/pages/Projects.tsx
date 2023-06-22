@@ -37,7 +37,7 @@ export const Projects: React.FC = () => {
         style={{ width: "300px" }}
       />
       <div className="projects">
-        <BuildingList gridValue={selectedValue} />
+        <BuildingList />
       </div>
     </div>
   );
