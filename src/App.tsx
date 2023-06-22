@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { NavigationLayout } from "./component/NavgationLayout";
 import { Home } from "./pages/Home";
-import { Projects } from "./pages/Projects";
+import Projects from "./pages/Projects";
 
 function App() {
   return (
