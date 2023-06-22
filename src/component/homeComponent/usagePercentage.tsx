@@ -24,11 +24,11 @@ const labelContent = (e: any) =>
   e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
 
 const test_data_percentage = [
-  { sub_building_type: "type1", count: 150 ,percentage : 0.1},
-  { sub_building_type: "type2", count: 100 ,percentage : 0.25},
-  { sub_building_type: "type3", count: 80 ,percentage : 0.15},
-  { sub_building_type: "type4", count: 200 ,percentage : 0.3},
-  { sub_building_type: "type5", count: 300 ,percentage : 0.2},
+  { field: "type1", count: 150 ,percentage : 0.1},
+  { field: "type2", count: 100 ,percentage : 0.25},
+  { field: "type3", count: 80 ,percentage : 0.15},
+  { field: "type4", count: 200 ,percentage : 0.3},
+  { field: "type5", count: 300 ,percentage : 0.2},
 ];
 
 const UsagePercentage = () => {
@@ -40,10 +40,11 @@ const UsagePercentage = () => {
         
         const response = await axios.get(urlPrefix.IP_port + "/dashboard/project");
         const data = response.data;
-        setPercentages(data);
+       // setPercentages(data);
         
-        console.log(data)
-        setPercentages(data);
+        //console.log(data)
+
+        setPercentages(test_data_percentage);
       } catch (error) {
         console.error(error);
       }
@@ -59,8 +60,8 @@ const UsagePercentage = () => {
           <ChartSeriesItem
             type="donut"
             data={percentages}
-            categoryField="sub_building_type"
-            field="COUNT"
+            categoryField="field"
+            field="percentage"
             autoFit = {true}
             holeSize = {100}
           >
