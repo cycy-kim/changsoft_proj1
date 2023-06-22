@@ -19,10 +19,9 @@ const CompanyPercentage = () => {
         const fetchData = async () => {
           try {
             const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/construction_company_ratio");
-            const data = response.data;
+            const data = JSON.parse(response.data);
             setPercentages(data);
-            
-            setPercentages(data);
+            console.log(data)
           } catch (error) {
             console.error(error);
           }
@@ -38,8 +37,8 @@ const CompanyPercentage = () => {
               <ChartSeriesItem
                 type="donut"
                 data={percentages}
-                categoryField="sub_building_type"
-                field="COUNT"
+                categoryField="field"
+                field="percentage"
                 autoFit = {true}
                 holeSize = {100}
               >

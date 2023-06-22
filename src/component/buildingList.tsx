@@ -41,6 +41,7 @@ const BuildingList = () => {
   const [pageSizeValue, setPageSizeValue] = React.useState();
   const [selectedState, setSelectedState] = React.useState({});
   const [categories, setCategories] = React.useState([]);
+  const [attributeNames, setAttributeNames] = useState<string[]>([""]);
 
   const pageChange = (event: any) => {
     const targetEvent = event.targetEvent;
@@ -62,10 +63,7 @@ const BuildingList = () => {
         );
         const data = JSON.parse(response.data);
 
-        console.log(data)
-        const attributeNames = Object.keys(data);
-        console.log(attributeNames);
-
+        setAttributeNames(Object.keys(data[0]));
         setBuildingList(data);
       } catch (error) {
         console.error(error);
@@ -125,10 +123,9 @@ const BuildingList = () => {
         detail={DetailComponent}
         onExpandChange={expandChange}
       >
-        <GridColumn field="id" />
-        <GridColumn field="building_name" />
-        <GridColumn field="building_type" />
-        <GridColumn field="project_id" />
+        {attributeNames.map((attr) => (
+          <GridColumn field={attr} />
+        ))}
       </Grid>
     </div>
   );

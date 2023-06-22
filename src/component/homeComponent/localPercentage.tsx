@@ -20,7 +20,7 @@ const LocalPercentage = ()=>{
           try {
             
             const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/location_ratio");
-            const data = response.data;
+            const data = JSON.parse(response.data);
             setPercentages(data);
             
             setPercentages(data);
@@ -39,8 +39,8 @@ const LocalPercentage = ()=>{
               <ChartSeriesItem
                 type="donut"
                 data={percentages}
-                categoryField="sub_building_type"
-                field="COUNT"
+                categoryField="field"
+                field="percentage"
                 autoFit = {true}
                 holeSize = {100}
               >

@@ -38,7 +38,7 @@ const UsagePercentage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/usage_ratio");
-        const data = response.data;
+        const data = JSON.parse(response.data);
         setPercentages(data);
 
         //setPercentages(test_data_percentage);
