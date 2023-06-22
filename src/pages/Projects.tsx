@@ -1,37 +1,46 @@
 import BuildingList from "./../component/buildingList";
 import React, { useEffect, useState } from "react";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
+import axios from "axios";
+import urlPrefix from "./../resource/URL_prefix.json";
 
-export const Projects: React.FC = () => {
-  const [data, setData] = useState<string[]>([]);
-  const [value, setValue] = useState<string | null>(null);
-  const [selectedValue, setSelectedValue] = useState<string>("");
+interface projectList_interface{
+  project_name:string;
+}
+
+const Projects = () => {
+  const [projectList, setProjectList] = useState<projectList_interface[]>([]);
+  const [selected, setSelected] = useState<string>("");
 
   useEffect(() => {
-    fetch("http://192.168.0.129:8000/project/project_name")
-      .then((response) => response.json())
-      .then((json) => {
-        const constructionCompanies = JSON.parse(json);
-        setData(constructionCompanies);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch construction companies:", error);
-      });
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(urlPrefix.IP_port + "/project/project_name");
+        const data = JSON.parse(response.data);
+
+        const projectNames = data.map((obj:projectList_interface) => obj.project_name)
+        setProjectList(projectNames);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleChange = (event: any) => {
-    setValue(event.target.value);
+    setSelected(event.target.value);
   };
 
   const handleDropdownChange = (value: string) => {
-    setSelectedValue(value);
+    setSelected(value);
   };
 
   return (
     <div className="projects">
       <DropDownList
-        data={data}
-        value={value}
+        data={projectList}
+        value={selected}
         onChange={handleChange}
         filterable={true}
         style={{ width: "300px" }}
@@ -42,3 +51,5 @@ export const Projects: React.FC = () => {
     </div>
   );
 };
+
+export {Projects}
