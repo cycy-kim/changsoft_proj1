@@ -13,10 +13,11 @@ const TotalBuildingDescription = (props: any) => {
     description =
       "Number of buildings in " +
       props.projList.find(
-        (item: projectdetail) => item.project_name === props.projName
+        (item: projectdetail) => (item.project_name === props.projName)
       )?.project_name +
       " is";
   }
+
 
   return (
     <div>
@@ -24,8 +25,8 @@ const TotalBuildingDescription = (props: any) => {
       <br />
       {
         props.projList.find(
-          (item: projectdetail) => item.project_name === props.projName
-        )?.COUNT
+          (item: projectdetail) => (item.project_name === props.projName)
+        )?.buildingTotalNum
       }
     </div>
   );
@@ -39,25 +40,21 @@ const ProjectDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        /*
+        
         const response_num = await axios.get(
-          //"http://192.168.0.129:8000/data/building",
           urlPrefix.IP_port + "/data/building_totalnum"
         );
         
         const data: projectdetail[] = JSON.parse(response_num.data);
-        */
-
-        ///
-        let data: projectdetail[] = [];
+        
         let cnt = 0;
         for (let i = 0; i < data.length; i++) {
-          cnt += data[i].COUNT;
+          cnt += data[i].buildingTotalNum;
         }
-        data.unshift({ id: 0, project_name: "Total", COUNT: cnt });
+        data.unshift({ id: 0, project_name: "Total", buildingTotalNum: cnt });
         setProjectList(data);
 
-        console.log(projectList);
+        console.log(data);
       } catch (error) {
         console.error(error);
       }
