@@ -62,6 +62,7 @@ const BuildingList = () => {
         );
         const data = JSON.parse(response.data);
 
+        console.log(data)
         const attributeNames = Object.keys(data);
         console.log(attributeNames);
 
