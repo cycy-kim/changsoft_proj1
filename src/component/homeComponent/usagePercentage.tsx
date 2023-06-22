@@ -30,7 +30,16 @@ import "hammerjs";
 import axios from "axios";
 import { usagePercent_interface } from "../../interface/usagePercent_interface";
 
-const labelContent = (e:any) => e.category;
+const labelContent = (e: any) =>
+  e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
+
+const test_data_percentage = [
+  { sub_building_type: "type1", COUNT: 150 },
+  { sub_building_type: "type2", COUNT: 100 },
+  { sub_building_type: "type3", COUNT: 80 },
+  { sub_building_type: "type4", COUNT: 200 },
+  { sub_building_type: "type5", COUNT: 300 },
+];
 
 const UsagePercentage = () => {
   const [percentages, setPercentages] = useState<usagePercent_interface[]>([]);
@@ -38,9 +47,13 @@ const UsagePercentage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        /*
         const response = await axios.get("");
         const data1 = response.data;
         setPercentages(data1);
+        */
+
+        setPercentages(test_data_percentage);
       } catch (error) {
         console.error(error);
       }
@@ -58,10 +71,13 @@ const UsagePercentage = () => {
             data={percentages}
             categoryField="sub_building_type"
             field="COUNT"
+            autoFit = {true}
+            holeSize = {100}
           >
             <ChartSeriesLabels
-              color="#fff"
+              color="#000"
               background="none"
+              position="outsideEnd"
               content={labelContent}
             />
           </ChartSeriesItem>

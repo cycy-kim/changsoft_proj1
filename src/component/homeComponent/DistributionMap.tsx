@@ -14,7 +14,7 @@ import {
   MapMarkerLayer,
 } from "@progress/kendo-react-map";
 import urlPrefix from "../../resource/URL_prefix.json";
-import {location} from "../../interface/location"
+import { location } from "../../interface/location";
 import { coordinate } from "../../interface/coordinate";
 import axios from "axios";
 
@@ -56,6 +56,23 @@ const markerStyle = {
   },
 };
 
+const test_data_marker : coordinate[]=[
+  {
+    latlng: [37.4950413, 127.1580819],
+    name: "data1",
+    numOfBuildings: 0.8,
+  },
+  {
+    latlng: [37.6600137, 127.0762614],
+    name: "data2",
+    numOfBuildings: 1,
+  },
+  {
+    latlng: [35.3, 129],
+    name: "data3",
+    numOfBuildings: 2,
+  },
+];
 
 const DistributionMap = () => {
   const [markers, setMarkers] = useState<coordinate[]>([]);
@@ -65,16 +82,30 @@ const DistributionMap = () => {
       try {
         //여러개일때 axios.all사용해야함
         //db에 데이터 들어오면 수정해보기
+        /*
         const response = await axios.get(req_url);
-        const data1:location[] = response.data
-        setMarkers(markers.concat({latlng:[  Number(data1[0].lat), Number(data1[0].lon)], name:"my home"}))
-        console.log(markers)
-
+        const data1: location[] = response.data;
+        setMarkers(
+          markers.concat({
+            latlng: [Number(data1[0].lat), Number(data1[0].lon)],
+            name: "my home",
+            numOfBuildings: 100,
+          })
+        );
+        console.log(markers);
 
         const response2 = await axios.get(req_url2);
-        const data2:location[] = response2.data
-        setMarkers(markers.concat({latlng:[  Number(data2[0].lat), Number(data2[0].lon)], name:"my home2"}))
-        console.log(markers)
+        const data2: location[] = response2.data;
+        setMarkers(
+          markers.concat({
+            latlng: [Number(data2[0].lat), Number(data2[0].lon)],
+            name: "my home2",
+            numOfBuildings: 10,
+          })
+        );
+        console.log(markers);
+        */ 
+        setMarkers(test_data_marker);
       } catch (error) {
         console.error(error);
       }
@@ -94,11 +125,20 @@ const DistributionMap = () => {
           />
           <MapShapeLayer data={geoShapes} style={markerStyle} />
 
+          <MapBubbleLayer
+            data={markers}
+            locationField="latlng"
+            //size is determined by ratio of numOfBuildings 
+            valueField="numOfBuildings"
+            attribution="Population data from Nordpil and UN Population Division."
+            style={markerStyle}
+          />
+
           <MapMarkerLayer
             data={markers}
             locationField="latlng"
             titleField="name"
-          /> 
+          />
         </MapLayers>
       </Map>
     </div>

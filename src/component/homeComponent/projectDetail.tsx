@@ -1,29 +1,62 @@
-import {
-  useState,
-  useEffect,
-} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { projectdetail } from "./../../interface/projectdetail_interface";
-import urlPrefix from "./../../resource/URL_prefix.json"
+import urlPrefix from "./../../resource/URL_prefix.json";
+
+//projName:string, projList:projectdetail[]
+const TotalBuildingDescription = (props: any) => {
+  let description = "";
+  if (props.projName === "Total") {
+    description = "Number of total buildings is";
+  } else {
+    description =
+      "Number of buildings in " +
+      props.projList.find(
+        (item: projectdetail) => item.project_name === props.projName
+      )?.project_name +
+      " is";
+  }
+
+  return (
+    <div>
+      {description}
+      <br />
+      {
+        props.projList.find(
+          (item: projectdetail) => item.project_name === props.projName
+        )?.COUNT
+      }
+    </div>
+  );
+};
 
 const ProjectDetail = () => {
   //onst [buildingNums, setBuildingNums] = useState();
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<string>("Total");
   const [projectList, setProjectList] = useState<projectdetail[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        /*
         const response_num = await axios.get(
           //"http://192.168.0.129:8000/data/building",
           urlPrefix.IP_port + "/data/building_totalnum"
         );
+        
         const data: projectdetail[] = JSON.parse(response_num.data);
+        */
 
-        //console.log(data);
+        ///
+        let data: projectdetail[] = [];
+        let cnt = 0;
+        for (let i = 0; i < data.length; i++) {
+          cnt += data[i].COUNT;
+        }
+        data.unshift({ id: 0, project_name: "Total", COUNT: cnt });
         setProjectList(data);
-        setSelected(data[0].project_name);
+
         console.log(projectList);
       } catch (error) {
         console.error(error);
@@ -48,9 +81,7 @@ const ProjectDetail = () => {
         }}
       />
       <br />
-      <div>
-        {projectList.find((item: projectdetail) => item.project_name === selected)?.id}번 선택ㅎ
-      </div>
+      <TotalBuildingDescription projName={selected} projList={projectList} />
     </div>
   );
 };

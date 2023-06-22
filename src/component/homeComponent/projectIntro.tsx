@@ -6,7 +6,7 @@ import axios from "axios";
 import "./../../styles/projectIntro.scss"
 import urlPrefix from "./../../resource/URL_prefix.json"
 
-const ProjectIntro = () => {
+const TotalProject = () => {
   const [projectNum, setProjectNum] = useState(0);
 
   useEffect(() => {
@@ -34,4 +34,4 @@ const ProjectIntro = () => {
   );
 };
 
-export default ProjectIntro;
+export default TotalProject;

@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
 import { TileLayout } from "@progress/kendo-react-layout";
-import { Button } from '@progress/kendo-react-buttons';
-import ProjectIntro from './../component/homeComponent/projectIntro';
-import ProjectDetail from './../component/homeComponent/projectDetail';
-import DistributionMap from './../component/homeComponent/distributionMap';
-import UsagePercentage from './../component/homeComponent/usagePercentage';
+import { Button } from "@progress/kendo-react-buttons";
+import TotalProject from "./../component/homeComponent/projectIntro";
+
+import ProjectDetail from "./../component/homeComponent/projectDetail";
+import DistributionMap from "./../component/homeComponent/distributionMap";
+import UsagePercentage from "./../component/homeComponent/usagePercentage";
 
 interface Tile {
   defaultPosition: {
@@ -18,15 +19,15 @@ interface Tile {
   draggable?: boolean;
 }
 
-const tiles: Tile[] = [
+const tiles= [
   {
     defaultPosition: {
       col: 1,
       colSpan: 1,
       rowSpan: 1,
     },
-    header: "Number of total projects",
-    body: <ProjectIntro />,
+    header: "Total Projects",
+    body: <TotalProject />,
   },
   {
     defaultPosition: {
@@ -34,7 +35,7 @@ const tiles: Tile[] = [
       colSpan: 1,
       rowSpan: 1,
     },
-    header: "Tile 2",
+    header: "Total Buildings",
     body: <ProjectDetail />,
   },
   {
@@ -44,7 +45,7 @@ const tiles: Tile[] = [
       rowSpan: 1,
     },
     header: "Tile 3",
-    body: <UsagePercentage/>,
+    body: <UsagePercentage />,
   },
   {
     defaultPosition: {
@@ -100,7 +101,6 @@ const tiles: Tile[] = [
     header: "Distribution Map",
     body: <DistributionMap />,
     reorderable: false,
-    draggable: false,
   },
 ];
 
