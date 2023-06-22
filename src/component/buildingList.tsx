@@ -14,8 +14,8 @@ import axios from "axios";
 import { building } from "./../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
 import BuildingDetail from "./buildingDetail";
-import ProjectIntro from "./homeComponent/projectIntro"
-import urlPrefix from "./../resource/URL_prefix.json"
+import ProjectIntro from "./homeComponent/projectIntro";
+import urlPrefix from "./../resource/URL_prefix.json";
 
 const DATA_ITEM_KEY = "id";
 const SELECTED_FIELD = "selected";
@@ -58,45 +58,14 @@ const BuildingList = () => {
       try {
         const response = await axios.get(
           //"http://192.168.0.129:8000/data/building",
-          urlPrefix.IP_port + "/data/building"
+          urlPrefix.IP_port + "/dashboard/building"
         );
         const data = JSON.parse(response.data);
-        //console.log(data);
-        setBuildingList(data);
 
-        /*
-        const temp: building[] = [
-          {
-            id: 1,
-            building_name: "name1",
-            building_type: "type1",
-            project_id: 1,
-          },
-          {
-            id: 2,
-            building_name: "name2",
-            building_type: "type2",
-            project_id: 2,
-          },
-          {
-            id: 3,
-            building_name: "name3",
-            building_type: "type3",
-            project_id: 3,
-          },
-        ];
-        console.log(temp);
-        setBuildingList(
-          temp.map((dataItem) =>
-            Object.assign(
-              {
-                selected: false,
-              },
-              dataItem
-            )
-          )
-        );
-        */
+        const attributeNames = Object.keys(data);
+        console.log(attributeNames);
+
+        setBuildingList(data);
       } catch (error) {
         console.error(error);
       }
