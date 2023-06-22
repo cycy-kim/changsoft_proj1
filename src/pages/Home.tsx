@@ -4,7 +4,7 @@ import { Button } from "@progress/kendo-react-buttons";
 import TotalProject from "./../component/homeComponent/projectIntro";
 
 import ProjectDetail from "./../component/homeComponent/projectDetail";
-import DistributionMap from "./../component/homeComponent/distributionMap";
+import DistributionMap from "../component/homeComponent/distributionMap";
 import UsagePercentage from "./../component/homeComponent/usagePercentage";
 
 interface Tile {
@@ -44,9 +44,8 @@ const tiles= [
       colSpan: 1,
       rowSpan: 1,
     },
-    header: "Distribution Map",
-    body: <DistributionMap />,
-    reorderable: false,
+    header: "Tile 3",
+    body: <UsagePercentage />,
   },
   {
     defaultPosition: {
@@ -55,7 +54,7 @@ const tiles= [
       rowSpan: 1,
     },
     header: "Tile 4",
-    body: <UsagePercentage />,
+    body: <Button>Button 4</Button>,
   },
   {
     defaultPosition: {
@@ -99,8 +98,9 @@ const tiles= [
       colSpan: 1,
       rowSpan: 1,
     },
-    header: "Tile 9",
-    body: <Button>Button 4</Button>,
+    header: "Distribution Map",
+    body: <DistributionMap />,
+    reorderable: false,
   },
 ];
 
