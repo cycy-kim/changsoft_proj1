@@ -17,7 +17,7 @@ import {
 } from "@progress/kendo-react-data-tools";
 import "hammerjs";
 import axios from "axios";
-import { usagePercent_interface } from "../../interface/usagePercent_interface";
+import { percent_percentage } from "../../interface/percentage_interface";
 import urlPrefix from "./../../resource/URL_prefix.json";
 
 const TotalArea = () => {
