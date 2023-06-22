@@ -19,7 +19,7 @@ const LocalPercentage = ()=>{
         const fetchData = async () => {
           try {
             
-            const response = await axios.get(urlPrefix.IP_port + "/dashboard/project");
+            const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/location_ratio");
             const data = response.data;
             setPercentages(data);
             
