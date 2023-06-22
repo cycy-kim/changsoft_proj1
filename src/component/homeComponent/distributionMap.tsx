@@ -19,13 +19,13 @@ import { coordinate } from "../../interface/coordinate";
 import axios from "axios";
 
 const sample_addr = "성내천로47길 38";
-const req_url = `https://nominatim.openstreetmap.org/search?format=json&q=${sample_addr}`;
+const req_url = `search?format=json&q=${sample_addr}`;
 const sample_addr2 = "덕릉로86길 70";
 const req_url2 = `https://nominatim.openstreetmap.org/search?format=json&q=${sample_addr2}`;
 
 const tileSubdomains = ["a", "b", "c"];
 const tileUrl = (e: TileUrlTemplateArgs) =>
-  `https://${e.subdomain}.tile.openstreetmap.org/${e.zoom}/${e.x}/${e.y}.png`;
+`https://${e.subdomain}.tile.openstreetmap.org/${e.zoom}/${e.x}/${e.y}.png?layers=T`;
 const attribution =
   '&copy; <a href="https://osm.org/copyright">OpenStreetMap contributors</a>';
 

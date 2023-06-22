@@ -14,7 +14,7 @@ const TotalProject = () => {
       try {
         const response = await axios.get(
           //"http://192.168.0.129:8000/data/building",
-          urlPrefix.IP_port + "/data/project_num"
+          urlPrefix.IP_port + "/project/count"
         );
         const data = JSON.parse(response.data);
         //console.log(data);
