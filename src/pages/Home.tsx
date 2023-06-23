@@ -27,7 +27,7 @@ const tiles: Tile[] = [
     body: <ProjectDetail />,
   },
   {
-    header: "Distribution Map",
+    header: "Location Map",
     body: <DistributionMap />,
   },
   {
@@ -80,12 +80,14 @@ export const Home: React.FC = () => {
     <div className="building-dashboard-container">
       <TileLayout
         columns={4}
-        rowHeight={255}
+        rowHeight={250}
         positions={data}
         gap={{ rows: 10, columns: 10 }}
         items={tiles.map((tile, index) => ({
           ...tile,
-          reorderable: tile.header !== "Distribution Map", // Set reorderable to false for Distribution Map tile
+          reorderable: tile.header !== "Location Map",
+          header: <strong>{tile.header}</strong>,
+          body: <div className="tile-content">{tile.body}</div>,
         }))}
         onReposition={handleReposition}
       />

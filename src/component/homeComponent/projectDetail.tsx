@@ -3,6 +3,7 @@ import axios from "axios";
 import { DropDownList } from "@progress/kendo-react-dropdowns";
 import { projectdetail } from "./../../interface/projectdetail_interface";
 import urlPrefix from "./../../resource/URL_prefix.json";
+import "../../styles/projectDetail.scss"
 
 const ProjectDetail = () => {
   const [buildingNum, setBuildingNum] = useState(0);
@@ -26,7 +27,7 @@ const ProjectDetail = () => {
   }, []);
 
   return (
-    <div>
+    <div className="total-building-num">
       {buildingNum}
     </div>
   );
