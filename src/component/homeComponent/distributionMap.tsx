@@ -29,7 +29,12 @@ const attribution =
 const tileSubdomains = ["a", "b", "c"];
 const tileUrl = (e: TileUrlTemplateArgs) =>
 `https://${e.subdomain}.tile.openstreetmap.org/${e.zoom}/${e.x}/${e.y}.png?layers=T`;
+const attribution =
+  '&copy; <a href="https://osm.org/copyright">OpenStreetMap contributors</a>';
 
+const reqPrefix = "https://maps.googleapis.com/maps/api/geocode/json?address="
+let address = "";
+const reqPostfix = "&key=AIzaSyCGtBkqnmDdzL3Qo8Z1mEciv3Egas37coA"
 
 const geoShapes = [
   {
@@ -88,11 +93,11 @@ const DistributionMap = () => {
         
         console.log("!")
         const response = await axios.get(urlPrefix.IP_port + "/project_location");
-        const data: coordinate[] = response.data;
+        const data:coordinate[] = response.data;
         console.log("?")
-        console.log(data);
         
         setMarkers(data);
+        console.log(markers);
       } catch (error) {
         console.error(error);
       }
@@ -108,6 +113,7 @@ const DistributionMap = () => {
           <MapTileLayer
             urlTemplate={tileUrl}
             subdomains={tileSubdomains}
+            attribution={attribution}
           />
           <MapShapeLayer data={geoShapes} style={markerStyle} />
 
@@ -120,11 +126,11 @@ const DistributionMap = () => {
             style={markerStyle}
           />
 
-          <MapMarkerLayer
+          {/* <MapMarkerLayer
             data={markers}
             locationField="latlng"
             titleField="name"
-          />
+          /> */}
         </MapLayers>
       </Map>
     </div>
