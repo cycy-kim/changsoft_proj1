@@ -35,20 +35,20 @@ const tiles: Tile[] = [
     body: <LocalPercentage />,
   },
   {
-    header: "Empty",
-    body: <Button></Button>,
-  },
-  {
-    header: "Empty",
-    body: <Button></Button>,
-  },
-  {
     header: "Company Percentage",
     body: <CompanyPercentage />,
   },
   {
     header: "Usage Percentage",
     body: <UsagePercentage />,
+  },
+  {
+    header: "Empty",
+    body: <Button></Button>,
+  },
+  {
+    header: "Empty",
+    body: <Button></Button>,
   },
   {
     header: "Total Area",
@@ -64,8 +64,8 @@ export const Home: React.FC = () => {
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total Building
     { col: 2, colSpan: 3, rowSpan: 2 }, // Map
     { col: 1, colSpan: 2, rowSpan: 2 }, // Local %
-    { col: 1, colSpan: 1, rowSpan: 2 }, // Company %
-    { col: 2, colSpan: 1, rowSpan: 2 }, // Usage %
+    { col: 3, colSpan: 2, rowSpan: 2 }, // Company %
+    { col: 1, colSpan: 2, rowSpan: 2 }, // Usage %
     { col: 3, colSpan: 1, rowSpan: 2 }, // Button
     { col: 4, colSpan: 1, rowSpan: 2 }, // Button
     { col: 1, colSpan: 4, rowSpan: 2 }, // Total Area

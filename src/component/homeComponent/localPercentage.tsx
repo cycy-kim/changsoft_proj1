@@ -6,57 +6,59 @@ import {
   ChartSeries,
   ChartSeriesItem,
   ChartSeriesLabels,
+  ChartTooltip,
 } from "@progress/kendo-react-charts";
 import urlPrefix from "./../../resource/URL_prefix.json";
-import "./../../styles/ChartFont.scss"
+import "./../../styles/ChartFont.scss";
 
-const labelContent = (e: any) =>
-  e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
+const LocalPercentage = () => {
+  const [percentages, setPercentages] = useState([]);
 
-const LocalPercentage = ()=>{
-    const [percentages, setPercentages] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          urlPrefix.IP_port + "/dashboard/project/location_ratio"
+        );
+        const data = JSON.parse(response.data);
+        setPercentages(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            
-            const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/location_ratio");
-            const data = JSON.parse(response.data);
-            setPercentages(data);
-            
-            setPercentages(data);
-          } catch (error) {
-            console.error(error);
-          }
-        };
-    
-        fetchData();
-      }, []);
-    
+    fetchData();
+  }, []);
+
+  const renderTooltip = (e: any) => {
+    if (e && e.point) {
       return (
-        <div className="local-percentage">
-          <Chart>
-            <ChartSeries>
-              <ChartSeriesItem
-                type="donut"
-                data={percentages}
-                categoryField="field"
-                field="percentage"
-                autoFit = {true}
-                holeSize = {100}
-              >
-                <ChartSeriesLabels
-                  color="#000"
-                  background="none"
-                  position="outsideEnd"
-                  content={labelContent}
-                />
-              </ChartSeriesItem>
-            </ChartSeries>
-            <ChartLegend visible={false} />
-          </Chart>
+        <div>
+          <p>Category: {e.point.category}</p>
+          <p>Percentage: {Number(e.point.dataItem.percentage).toFixed(2)}%</p>
         </div>
       );
-}
+    }
+
+    return null;
+  };
+
+  return (
+    <div className="local-percentage">
+      <Chart>
+        <ChartSeries>
+          <ChartSeriesItem
+            type="pie"
+            data={percentages}
+            categoryField="field"
+            field="percentage"
+          />
+        </ChartSeries>
+        <ChartTooltip render={renderTooltip} />
+        <ChartLegend visible={false} />
+      </Chart>
+    </div>
+  );
+};
 
 export default LocalPercentage;
