@@ -60,7 +60,7 @@ const UsagePercentage = () => {
             categoryField="field"
             field="percentage"
             autoFit = {true}
-            holeSize = {100}
+            holeSize = {80}
           >
             <ChartSeriesLabels
               color="#000"

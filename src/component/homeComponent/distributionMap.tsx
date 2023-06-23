@@ -18,13 +18,18 @@ import { location } from "../../interface/location";
 import { coordinate } from "../../interface/coordinate";
 import axios from "axios";
 
-const req_url = `https://nominatim.openstreetmap.org/search?format=json&q=`;
-
+//const req_url = `https://nominatim.openstreetmap.org/search?format=json&q=`;
+/*
 const tileSubdomains = ["a", "b", "c"];
 const tileUrl = (e: TileUrlTemplateArgs) =>
 `https://${e.subdomain}.tile.openstreetmap.org/${e.zoom}/${e.x}/${e.y}.png?layers=T`;
 const attribution =
   '&copy; <a href="https://osm.org/copyright">OpenStreetMap contributors</a>';
+*/
+const tileSubdomains = ["a", "b", "c"];
+const tileUrl = (e: TileUrlTemplateArgs) =>
+`https://${e.subdomain}.tile.openstreetmap.org/${e.zoom}/${e.x}/${e.y}.png?layers=T`;
+
 
 const geoShapes = [
   {
@@ -76,17 +81,18 @@ const DistributionMap = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      
       try {
         //여러개일때 axios.all사용해야함
         //db에 데이터 들어오면 수정해보기
         
-        const response = await axios.get(req_url);
-        const data1: location[] = response.data;
-        console.log(markers);
+        console.log("!")
+        const response = await axios.get(urlPrefix.IP_port + "/project_location");
+        const data: coordinate[] = response.data;
+        console.log("?")
+        console.log(data);
         
-        const response2 = await axios.get(req_url);
-       
-        //setMarkers(test_data_marker);
+        setMarkers(data);
       } catch (error) {
         console.error(error);
       }
@@ -102,7 +108,6 @@ const DistributionMap = () => {
           <MapTileLayer
             urlTemplate={tileUrl}
             subdomains={tileSubdomains}
-            attribution={attribution}
           />
           <MapShapeLayer data={geoShapes} style={markerStyle} />
 

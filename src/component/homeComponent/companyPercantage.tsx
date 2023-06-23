@@ -21,7 +21,6 @@ const CompanyPercentage = () => {
             const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/construction_company_ratio");
             const data = JSON.parse(response.data);
             setPercentages(data);
-            console.log(data)
           } catch (error) {
             console.error(error);
           }
