@@ -19,6 +19,7 @@ import "hammerjs";
 import axios from "axios";
 import { percent_percentage } from "../../interface/percentage_interface";
 import urlPrefix from "./../../resource/URL_prefix.json";
+import "./../../styles/ChartFont.scss";
 
 const labelContent = (e: any) =>
   e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
