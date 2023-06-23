@@ -35,20 +35,20 @@ const tiles: Tile[] = [
     body: <LocalPercentage />,
   },
   {
+    header: "Empty",
+    body: <Button></Button>,
+  },
+  {
+    header: "Empty",
+    body: <Button></Button>,
+  },
+  {
     header: "Company Percentage",
     body: <CompanyPercentage />,
   },
   {
     header: "Usage Percentage",
     body: <UsagePercentage />,
-  },
-  {
-    header: "Empty",
-    body: <Button></Button>,
-  },
-  {
-    header: "Empty",
-    body: <Button></Button>,
   },
   {
     header: "Total Area",
