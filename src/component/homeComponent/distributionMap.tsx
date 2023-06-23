@@ -79,31 +79,14 @@ const DistributionMap = () => {
       try {
         //여러개일때 axios.all사용해야함
         //db에 데이터 들어오면 수정해보기
-        /*
+        
         const response = await axios.get(req_url);
         const data1: location[] = response.data;
-        setMarkers(
-          markers.concat({
-            latlng: [Number(data1[0].lat), Number(data1[0].lon)],
-            name: "my home",
-            numOfBuildings: 100,
-          })
-        );
         console.log(markers);
-
-        const response2 = await axios.get(req_url2);
-        const data2: location[] = response2.data;
-        setMarkers(
-          markers.concat({
-            latlng: [Number(data2[0].lat), Number(data2[0].lon)],
-            name: "my home2",
-            numOfBuildings: 10,
-          })
-        );
-        console.log(markers);
-        */ 
+        
+        const response2 = await axios.get(req_url);
        
-        setMarkers(test_data_marker);
+        //setMarkers(test_data_marker);
       } catch (error) {
         console.error(error);
       }
