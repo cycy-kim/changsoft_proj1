@@ -11,6 +11,8 @@ import UsagePercentage from "./../component/homeComponent/usagePercentage";
 import CompanyPercentage from "../component/homeComponent/companyPercantage";
 import LocalPercentage from "../component/homeComponent/localPercentage";
 import TotalArea from "../component/homeComponent/totalArea";
+import FloorCount from "../component/homeComponent/floorCount";
+
 
 interface Tile {
   header: string;
@@ -43,8 +45,8 @@ const tiles: Tile[] = [
     body: <UsagePercentage />,
   },
   {
-    header: "Empty",
-    body: <Button></Button>,
+    header: "Floor Count",
+    body: <FloorCount />,
   },
   {
     header: "Empty",
@@ -62,10 +64,10 @@ export const Home: React.FC = () => {
   >([
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total project
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total Building
-    { col: 2, colSpan: 2, rowSpan: 2 }, // Map
-    { col: 4, colSpan: 1, rowSpan: 2 }, // Local %
-    { col: 1, colSpan: 1, rowSpan: 2 }, // Company %
-    { col: 2, colSpan: 1, rowSpan: 2 }, // Usage %
+    { col: 2, colSpan: 3, rowSpan: 2 }, // Map
+    { col: 1, colSpan: 2, rowSpan: 2 }, // Local %
+    { col: 3, colSpan: 2, rowSpan: 2 }, // Company %
+    { col: 1, colSpan: 2, rowSpan: 2 }, // Usage %
     { col: 3, colSpan: 1, rowSpan: 2 }, // Button
     { col: 4, colSpan: 1, rowSpan: 2 }, // Button
     { col: 1, colSpan: 4, rowSpan: 2 }, // Total Area

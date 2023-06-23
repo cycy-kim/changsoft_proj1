@@ -23,51 +23,24 @@ import "hammerjs";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
 
-interface projectsTotalArea {
-  min_val : number;
-  max_val : number;
+interface projectsFloorCount {
   range_num: number;
   item_count: number;
 }
 
-const categoryContent = (e:any)=>{
-  return  "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".concat(Math.floor(((e.max_val - e.min_val)/ 8 ) * e.range_num).toString())
-}
-const testData: projectsTotalArea[] = [
-  {
-    min_val : 1,
-  max_val : 2,
-  range_num: 3,
-  item_count: 4
-  },
-  {
-    min_val : 1,
-  max_val : 2,
-  range_num: 3,
-  item_count: 4
-  },
-  {
-    min_val : 1,
-  max_val : 2,
-  range_num: 3,
-  item_count: 4
-  },
-];
-
-const TotalArea = () => {
-  const [totalarea, setTotalarea] = useState<projectsTotalArea[]>([]);
-  const [maxRng,setMaxRng] =useState(0);
+const FloorCount = () => {
+  const [totalfloor, setTotalfloor] = useState<projectsFloorCount[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          urlPrefix.IP_port + "/dashboard/project/total_area_histogram"
+          urlPrefix.IP_port + "/dashboard/building/floor_count_histogram"
         );
         const data = JSON.parse(response.data);
-          
-        setTotalarea(data);
-        setMaxRng(data[0].max_val)
+
+        console.log(data);
+        setTotalfloor(data);
       } catch (error) {
         console.error(error);
       }
@@ -76,12 +49,11 @@ const TotalArea = () => {
     fetchData();
   }, []);
 
-  return (
-    <div>
-      <Chart>
+  return (<div>
+     <Chart>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem
-            categories={(totalarea.map(categoryContent)).concat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".concat(maxRng.toString()))}
+            categories={totalfloor.map((obj)=> obj.range_num*10)}
           >
             <ChartCategoryAxisTitle text="Area" />
           </ChartCategoryAxisItem>
@@ -92,13 +64,12 @@ const TotalArea = () => {
             type="column"
             gap={2}
             spacing={0.25}
-            data={totalarea.map((obj) => obj.item_count)}
+            data={totalfloor.map((obj) => obj.item_count)}
             color="#00028f">
             </ChartSeriesItem>
         </ChartSeries>
       </Chart>
-    </div>
-  );
+  </div>);
 };
 
-export default TotalArea;
+export default FloorCount;

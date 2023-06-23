@@ -92,7 +92,7 @@ const DistributionMap = () => {
         //db에 데이터 들어오면 수정해보기
         
         console.log("!")
-        const response = await axios.get(urlPrefix.IP_port + "/project_location");
+        const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/map");
         const data:coordinate[] = response.data;
         console.log("?")
         

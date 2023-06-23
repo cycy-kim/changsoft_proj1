@@ -19,16 +19,17 @@ import "hammerjs";
 import axios from "axios";
 import { percent_percentage } from "../../interface/percentage_interface";
 import urlPrefix from "./../../resource/URL_prefix.json";
+import "./../../styles/ChartFont.scss";
 
 const labelContent = (e: any) =>
   e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
-
+  
 const test_data_percentage = [
-  { field: "type1", count: 150 ,percentage : 0.1},
-  { field: "type2", count: 100 ,percentage : 0.25},
-  { field: "type3", count: 80 ,percentage : 0.15},
-  { field: "type4", count: 200 ,percentage : 0.3},
-  { field: "type5", count: 300 ,percentage : 0.2},
+  { field: "type1", count: 150, percentage: 0.1 },
+  { field: "type2", count: 100, percentage: 0.25 },
+  { field: "type3", count: 80, percentage: 0.15 },
+  { field: "type4", count: 200, percentage: 0.3 },
+  { field: "type5", count: 300, percentage: 0.2 },
 ];
 
 const UsagePercentage = () => {
@@ -37,7 +38,9 @@ const UsagePercentage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/usage_ratio");
+        const response = await axios.get(
+          urlPrefix.IP_port + "/dashboard/project/usage_ratio"
+        );
         const data = JSON.parse(response.data);
         setPercentages(data);
 
@@ -52,15 +55,15 @@ const UsagePercentage = () => {
 
   return (
     <div>
-      <Chart> 
+      <Chart>
         <ChartSeries>
           <ChartSeriesItem
             type="donut"
             data={percentages}
             categoryField="field"
             field="percentage"
-            autoFit = {true}
-            holeSize = {80}
+            autoFit={true}
+            holeSize={100}
           >
             <ChartSeriesLabels
               color="#000"
