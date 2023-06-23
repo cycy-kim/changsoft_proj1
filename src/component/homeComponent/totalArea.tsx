@@ -27,7 +27,7 @@ interface projectsTotalArea {
   total_area: number;
 }
 
-const testData:projectsTotalArea[] = [
+const testData: projectsTotalArea[] = [
   {
     project_name: "계룡_대전 용전근린공원 공동주택 신축공사",
     total_area: 14,
@@ -68,7 +68,9 @@ const TotalArea = () => {
     <div>
       <Chart>
         <ChartCategoryAxis>
-          <ChartCategoryAxisItem categories={totalarea.map((obj)=>obj.project_name)}>
+          <ChartCategoryAxisItem
+            categories={totalarea.map((obj) => obj.project_name)}
+          >
             <ChartCategoryAxisTitle text="Projects" />
           </ChartCategoryAxisItem>
         </ChartCategoryAxis>
@@ -78,7 +80,8 @@ const TotalArea = () => {
             type="column"
             gap={2}
             spacing={0.25}
-            data={totalarea.map((obj)=>obj.total_area)}
+            data={totalarea.map((obj) => obj.total_area)}
+            color="#00028f" // 원하는 색상으로 수정하세요
           />
         </ChartSeries>
       </Chart>
