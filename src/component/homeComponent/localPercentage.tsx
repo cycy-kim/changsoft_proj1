@@ -8,6 +8,7 @@ import {
   ChartSeriesLabels,
 } from "@progress/kendo-react-charts";
 import urlPrefix from "./../../resource/URL_prefix.json";
+import "./../../styles/ChartFont.scss"
 
 const labelContent = (e: any) =>
   e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
@@ -33,7 +34,7 @@ const LocalPercentage = ()=>{
       }, []);
     
       return (
-        <div>
+        <div className="local-percentage">
           <Chart>
             <ChartSeries>
               <ChartSeriesItem

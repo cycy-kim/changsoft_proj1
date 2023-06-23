@@ -62,8 +62,8 @@ export const Home: React.FC = () => {
   >([
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total project
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total Building
-    { col: 2, colSpan: 2, rowSpan: 2 }, // Map
-    { col: 4, colSpan: 1, rowSpan: 2 }, // Local %
+    { col: 2, colSpan: 3, rowSpan: 2 }, // Map
+    { col: 1, colSpan: 2, rowSpan: 2 }, // Local %
     { col: 1, colSpan: 1, rowSpan: 2 }, // Company %
     { col: 2, colSpan: 1, rowSpan: 2 }, // Usage %
     { col: 3, colSpan: 1, rowSpan: 2 }, // Button
