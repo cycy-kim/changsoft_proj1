@@ -9,7 +9,12 @@ import {
   GridColumn,
   getSelectedState,
   getSelectedStateFromKeyDown,
+  GridFilterChangeEvent
 } from "@progress/kendo-react-grid";
+import {
+  filterBy,
+  CompositeFilterDescriptor,
+} from "@progress/kendo-data-query";
 import axios from "axios";
 import { building } from "./../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
@@ -32,26 +37,20 @@ const DetailComponent = (props: any) => {
     </div>
   );
 };
+const initialFilter: CompositeFilterDescriptor = {
+  logic: "or",
+  filters: [{ field: "project_id", operator: "contains", value: "3" }],
+};
 
-const BuildingList = (props:any) => {
+const BuildingList = (props: any) => {
   const [buildingList, setBuildingList] = useState<building[]>([]);
   const [page, setPage] = React.useState(initialDataState);
   const [pageSizeValue, setPageSizeValue] = React.useState();
-  const [selectedState, setSelectedState] = React.useState({});
   const [categories, setCategories] = React.useState([]);
   const [attributeNames, setAttributeNames] = useState<string[]>([""]);
+  const [projectFilter, setProjectFilter] = useState(initialFilter);
 
-  const pageChange = (event: any) => {
-    const targetEvent = event.targetEvent;
-    const take = targetEvent.value === "All" ? 77 : event.page.take;
-    if (targetEvent.value) {
-      setPageSizeValue(targetEvent.value);
-    }
-    setPage({
-      ...event.page,
-      take,
-    });
-  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -70,23 +69,16 @@ const BuildingList = (props:any) => {
     fetchData();
   }, []);
 
-  const onSelectionChange = (event: any) => {
-    const newSelectedState = getSelectedState({
-      event,
-      selectedState: selectedState,
-      dataItemKey: DATA_ITEM_KEY,
+  const pageChange = (event: any) => {
+    const targetEvent = event.targetEvent;
+    const take = targetEvent.value === "All" ? 77 : event.page.take;
+    if (targetEvent.value) {
+      setPageSizeValue(targetEvent.value);
+    }
+    setPage({
+      ...event.page,
+      take,
     });
-    setSelectedState(newSelectedState);
-    //console.log(selectedState)
-  };
-  const onKeyDown = (event: any) => {
-    const newSelectedState = getSelectedStateFromKeyDown({
-      event,
-      selectedState: selectedState,
-      dataItemKey: DATA_ITEM_KEY,
-    });
-    setSelectedState(newSelectedState);
-    //console.log(selectedState)
   };
   const expandChange = (event: any) => {
     event.dataItem.expanded = event.value;
@@ -95,6 +87,8 @@ const BuildingList = (props:any) => {
       return;
     }
   };
+
+
   return (
     <div className="building-list-container">
       <Grid
@@ -104,21 +98,20 @@ const BuildingList = (props:any) => {
         take={page.take}
         total={buildingList.length}
         dataItemKey={DATA_ITEM_KEY}
-        selectedField={SELECTED_FIELD}
-        selectable={{
-          enabled: true,
-        }}
+
         pageable={{
-          buttonCount: 4,
+          buttonCount: 10,
           pageSizes: [5, 10, 15, "All"],
           pageSizeValue: pageSizeValue,
         }}
-        onSelectionChange={onSelectionChange}
-        onKeyDown={onKeyDown}
         onPageChange={pageChange}
+
         expandField="expanded"
         detail={DetailComponent}
         onExpandChange={expandChange}
+
+      filter={projectFilter}
+        onFilterChange={(e: GridFilterChangeEvent) => setProjectFilter(e.filter)}
       >
         {attributeNames.map((attr) => (
           <GridColumn field={attr} />
