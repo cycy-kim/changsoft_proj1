@@ -6,10 +6,12 @@ import {
   ChartSeries,
   ChartSeriesItem,
   ChartSeriesLabels,
+  ChartLegendTitle,
   ChartTooltip,
 } from "@progress/kendo-react-charts";
 import urlPrefix from "./../../resource/URL_prefix.json";
 
+const temp = ["a", "b", "c"];
 const CompanyPercentage = () => {
   const [percentages, setPercentages] = useState([]);
 
@@ -56,6 +58,10 @@ const CompanyPercentage = () => {
   return (
     <div>
       <Chart>
+      <ChartLegend position="right">
+          <ChartLegendTitle text="Companies" font="20px"/>
+        </ChartLegend>
+
         <ChartSeries>
           <ChartSeriesItem
             type="donut"
@@ -67,7 +73,6 @@ const CompanyPercentage = () => {
           ></ChartSeriesItem>
         </ChartSeries>
         <ChartTooltip render={renderTooltip} />
-        <ChartLegend visible={false} />
       </Chart>
     </div>
   );

@@ -78,13 +78,11 @@ const DistributionMap = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("!")
-        const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/map");
+        const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/map_threading");
         const data:coordinate[] = response.data;
-        console.log("?")
         
+        console.log("?");
         setMarkers(data);
-        console.log(markers);
       } catch (error) {
         console.error(error);
       }
@@ -101,6 +99,7 @@ const DistributionMap = () => {
             urlTemplate={tileUrl}
             subdomains={tileSubdomains}
             attribution={attribution}
+            
           />
           <MapShapeLayer data={geoShapes} style={markerStyle} />
 

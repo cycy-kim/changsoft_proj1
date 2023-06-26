@@ -7,8 +7,10 @@ import React, {
 import {
   Chart,
   ChartLegend,
+  ChartTooltip,
   ChartSeries,
   ChartSeriesItem,
+  ChartLegendTitle,
   ChartSeriesLabels,
 } from "@progress/kendo-react-charts";
 import {
@@ -23,7 +25,7 @@ import "./../../styles/ChartFont.scss";
 
 const labelContent = (e: any) =>
   e.category + "(" + (Number(e.percentage) * 100).toFixed(2) + "%)";
-  
+
 const test_data_percentage = [
   { field: "type1", count: 150, percentage: 0.1 },
   { field: "type2", count: 100, percentage: 0.25 },
@@ -53,9 +55,32 @@ const UsagePercentage = () => {
     fetchData();
   }, []);
 
+  const renderTooltip = (e: any) => {
+    if (e && e.point) {
+      if (e.point.category === null) {
+        return (
+          <div>
+            <p>Category: NULL </p>
+            <p>Percentage: {Number(e.point.dataItem.percentage).toFixed(2)}%</p>
+          </div>
+        );
+      }
+      return (
+        <div>
+          <p>Category: {e.point.category}</p>
+          <p>Percentage: {Number(e.point.dataItem.percentage).toFixed(2)}%</p>
+        </div>
+      );
+    }
+  };
+
   return (
     <div>
       <Chart>
+        <ChartLegend position="right">
+          <ChartLegendTitle text="Usages" font="20px" />
+        </ChartLegend>
+
         <ChartSeries>
           <ChartSeriesItem
             type="donut"
@@ -64,16 +89,9 @@ const UsagePercentage = () => {
             field="percentage"
             autoFit={true}
             holeSize={100}
-          >
-            <ChartSeriesLabels
-              color="#000"
-              background="none"
-              position="outsideEnd"
-              content={labelContent}
-            />
-          </ChartSeriesItem>
+          ></ChartSeriesItem>
         </ChartSeries>
-        <ChartLegend visible={false} />
+        <ChartTooltip render={renderTooltip} />
       </Chart>
     </div>
   );

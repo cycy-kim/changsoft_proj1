@@ -46,7 +46,7 @@ const FloorCount = () => {
           <ChartCategoryAxisItem
             categories={totalfloor.map((obj)=> obj.range_num*10)}
           >
-            <ChartCategoryAxisTitle text="Floor" />
+            <ChartCategoryAxisTitle text="Floors" />
           </ChartCategoryAxisItem>
         </ChartCategoryAxis>
 

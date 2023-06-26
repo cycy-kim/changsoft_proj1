@@ -6,6 +6,7 @@ import {
   ChartSeries,
   ChartSeriesItem,
   ChartSeriesLabels,
+  ChartLegendTitle,
   ChartTooltip,
 } from "@progress/kendo-react-charts";
 import urlPrefix from "./../../resource/URL_prefix.json";
@@ -54,16 +55,20 @@ const LocalPercentage = () => {
   return (
     <div className="local-percentage">
       <Chart>
+      <ChartLegend position="right">
+          <ChartLegendTitle text="Cities" font="20px" />
+        </ChartLegend>
+
         <ChartSeries>
           <ChartSeriesItem
-            type="pie"
+            type="donut"
             data={percentages}
             categoryField="field"
             field="percentage"
+            holeSize={100}
           />
         </ChartSeries>
         <ChartTooltip render={renderTooltip} />
-        <ChartLegend visible={false} />
       </Chart>
     </div>
   );
