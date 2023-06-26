@@ -33,7 +33,7 @@ const DetailComponent = (props: any) => {
   );
 };
 
-const BuildingList = () => {
+const BuildingList = (props:any) => {
   const [buildingList, setBuildingList] = useState<building[]>([]);
   const [page, setPage] = React.useState(initialDataState);
   const [pageSizeValue, setPageSizeValue] = React.useState();

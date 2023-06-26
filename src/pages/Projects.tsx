@@ -33,8 +33,9 @@ const Projects = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(urlPrefix.IP_port + "/project/id,project_name")
         const response = await axios.get(
-          urlPrefix.IP_port + "/project/project_name"
+          urlPrefix.IP_port + "/project/project_name,id"
         );
         const data = JSON.parse(response.data);
 
@@ -68,7 +69,7 @@ const Projects = () => {
         style={{ width: "300px" }}
       />
       <div className="projects">
-        <BuildingList />
+        <BuildingList projectId = {selected}/>
       </div>
     </div>
   );

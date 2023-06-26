@@ -30,7 +30,6 @@ const FloorCount = () => {
         );
         const data = JSON.parse(response.data);
 
-        console.log(data);
         setTotalfloor(data);
       } catch (error) {
         console.error(error);
@@ -46,7 +45,7 @@ const FloorCount = () => {
           <ChartCategoryAxisItem
             categories={totalfloor.map((obj)=> obj.range_num*10)}
           >
-            <ChartCategoryAxisTitle text="Area" />
+            <ChartCategoryAxisTitle text="Floor" />
           </ChartCategoryAxisItem>
         </ChartCategoryAxis>
 
