@@ -29,8 +29,12 @@ const tiles: Tile[] = [
     body: <ProjectDetail />,
   },
   {
-    header: "Location Map",
-    body: <DistributionMap />,
+    header: "Project Total Area",
+    body: <TotalArea />,
+  },
+  {
+    header: "Building Floors",
+    body: <FloorCount />,
   },
   {
     header: "Locations",
@@ -45,16 +49,8 @@ const tiles: Tile[] = [
     body: <UsagePercentage />,
   },
   {
-    header: "Building Floors",
-    body: <FloorCount />,
-  },
-  {
-    header: "Empty",
-    body: <Button></Button>,
-  },
-  {
-    header: "Project Total Area",
-    body: <TotalArea />,
+    header: "Location Map",
+    body: <DistributionMap />,
   },
 ];
 
@@ -64,13 +60,12 @@ export const Home: React.FC = () => {
   >([
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total project
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total Building
-    { col: 2, colSpan: 3, rowSpan: 2 }, // Map
+    { col: 2, colSpan: 4, rowSpan: 2 }, // Total Area
+    { col: 6, colSpan: 4, rowSpan: 2 }, // Floor Count
     { col: 1, colSpan: 2, rowSpan: 2 }, // Local %
     { col: 3, colSpan: 2, rowSpan: 2 }, // Company %
-    { col: 1, colSpan: 2, rowSpan: 2 }, // Usage %
-    { col: 3, colSpan: 1, rowSpan: 2 }, // Floor Count
-    { col: 4, colSpan: 1, rowSpan: 2 }, // Button
-    { col: 1, colSpan: 4, rowSpan: 2 }, // Total Area
+    { col: 5, colSpan: 2, rowSpan: 2 }, // Usage %
+    { col: 7, colSpan: 3, rowSpan: 2 }, // Map
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
@@ -81,8 +76,8 @@ export const Home: React.FC = () => {
   return (
     <div className="building-dashboard-container">
       <TileLayout
-        columns={4}
-        rowHeight={250}
+        columns={9}
+        rowHeight={160}
         positions={data}
         gap={{ rows: 10, columns: 10 }}
         items={tiles.map((tile, index) => ({
