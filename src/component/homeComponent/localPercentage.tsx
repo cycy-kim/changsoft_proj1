@@ -55,7 +55,7 @@ const LocalPercentage = () => {
   return (
     <div className="local-percentage">
       <Chart>
-      <ChartLegend position="right">
+        <ChartLegend position="top">
           <ChartLegendTitle text="Cities" font="20px" />
         </ChartLegend>
 
@@ -65,7 +65,8 @@ const LocalPercentage = () => {
             data={percentages}
             categoryField="field"
             field="percentage"
-            holeSize={100}
+            holeSize={60}
+            autoFit={true}
           />
         </ChartSeries>
         <ChartTooltip render={renderTooltip} />

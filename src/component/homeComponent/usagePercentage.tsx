@@ -77,7 +77,7 @@ const UsagePercentage = () => {
   return (
     <div>
       <Chart>
-        <ChartLegend position="right">
+        <ChartLegend position="top">
           <ChartLegendTitle text="Usages" font="20px" />
         </ChartLegend>
 

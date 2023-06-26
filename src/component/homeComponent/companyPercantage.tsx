@@ -58,8 +58,8 @@ const CompanyPercentage = () => {
   return (
     <div>
       <Chart>
-      <ChartLegend position="right">
-          <ChartLegendTitle text="Companies" font="20px"/>
+      <ChartLegend position="top" >
+          <ChartLegendTitle text="Companies"/>
         </ChartLegend>
 
         <ChartSeries>
