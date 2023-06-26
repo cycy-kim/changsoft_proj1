@@ -39,7 +39,7 @@ const FloorCount = () => {
 
   return (
     <div>
-      <Chart style={{ height: "300px" }}>
+      <Chart style={{ width: "100%" }}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem
             categories={totalfloor.map((obj) =>
