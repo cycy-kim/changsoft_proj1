@@ -89,7 +89,7 @@ const DistributionMap = () => {
     };
 
     fetchData();
-  });
+  },[]);
 
   return (
     <div>
@@ -108,7 +108,6 @@ const DistributionMap = () => {
             locationField="latlng"
             //size is determined by ratio of numOfBuildings 
             valueField="numOfBuildings"
-            attribution="Population data from Nordpil and UN Population Division."
             style={markerStyle}
           />
 
