@@ -34,6 +34,14 @@ const CompanyPercentage = () => {
 
   const renderTooltip = (e: any) => {
     if (e && e.point) {
+      if (e.point.category === null) {
+        return (
+          <div>
+            <p>Category: NULL </p>
+            <p>Percentage: {Number(e.point.dataItem.percentage).toFixed(2)}%</p>
+          </div>
+        );
+      }
       return (
         <div>
           <p>Category: {e.point.category}</p>
@@ -56,8 +64,7 @@ const CompanyPercentage = () => {
             field="percentage"
             autoFit={true}
             holeSize={100}
-          >
-          </ChartSeriesItem>
+          ></ChartSeriesItem>
         </ChartSeries>
         <ChartTooltip render={renderTooltip} />
         <ChartLegend visible={false} />
