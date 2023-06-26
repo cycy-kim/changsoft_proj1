@@ -22,7 +22,10 @@ interface projectsTotalArea {
 }
 
 const categoryContent = (e: any) => {
-  return ( "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + Math.floor(((e.max_val - e.min_val) / 8) * e.range_num).toString())
+  return (
+    "&nbsp;&nbsp;&nbsp;" +
+    Math.floor(((e.max_val - e.min_val) / 8) * e.range_num).toString()
+  );
 };
 const testData: projectsTotalArea[] = [
   {
@@ -69,12 +72,9 @@ const TotalArea = () => {
 
   return (
     <div>
-      <Chart style={{height: "300px", width: "100%"}}>
+      <Chart style={{ height: "300px", width: "100%" }}>
         <ChartCategoryAxis>
-          <ChartCategoryAxisItem
-            categories={totalarea
-              .map(categoryContent)}
-          >
+          <ChartCategoryAxisItem categories={totalarea.map(categoryContent)}>
             <ChartCategoryAxisTitle text="Total Area(m^2)" />
           </ChartCategoryAxisItem>
         </ChartCategoryAxis>
@@ -90,11 +90,6 @@ const TotalArea = () => {
             spacing={0.25}
             data={totalarea.map((obj) => obj.item_count)}
             color="#00028f"
-            labels={{
-              visible: true,
-              position: "outsideEnd", // Adjust label position to 'outsideEnd'
-              align: "right", // Align label text to the right
-            }}
           ></ChartSeriesItem>
         </ChartSeries>
       </Chart>

@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Chart,
   ChartSeries,
@@ -40,11 +37,14 @@ const FloorCount = () => {
     fetchData();
   }, []);
 
-  return (<div>
-     <Chart style={{height: "300px"}}>
+  return (
+    <div>
+      <Chart style={{ height: "300px" }}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem
-            categories={totalfloor.map((obj)=> obj.range_num*10)}
+            categories={totalfloor.map((obj) =>
+              (obj.range_num * 10).toString()
+            )}
           >
             <ChartCategoryAxisTitle text="Floors" />
           </ChartCategoryAxisItem>
@@ -56,11 +56,12 @@ const FloorCount = () => {
             gap={2}
             spacing={0.25}
             data={totalfloor.map((obj) => obj.item_count)}
-            color="#00028f">
-            </ChartSeriesItem>
+            color="#00028f"
+          ></ChartSeriesItem>
         </ChartSeries>
       </Chart>
-  </div>);
+    </div>
+  );
 };
 
 export default FloorCount;
