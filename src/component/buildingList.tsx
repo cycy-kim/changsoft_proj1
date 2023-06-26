@@ -24,10 +24,8 @@ const initialDataState = {
   take: 10,
 };
 
+//여기에 빌딩상세정보
 const DetailComponent = (props: any) => {
-  //console.log(props.dataItem.id)
-  //console.log(props.dataItem.id)
-
   return (
     <div>
       <BuildingDetail building_Id={props.dataItem.id} />
@@ -58,7 +56,6 @@ const BuildingList = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          //"http://192.168.0.129:8000/data/building",
           urlPrefix.IP_port + "/dashboard/building"
         );
         const data = JSON.parse(response.data);

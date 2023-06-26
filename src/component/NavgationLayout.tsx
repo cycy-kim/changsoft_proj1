@@ -3,6 +3,7 @@ import { Button } from "@progress/kendo-react-buttons";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { Drawer, DrawerContent } from "@progress/kendo-react-layout";
 import "./../styles/NavigationLayout.scss";
+import LogoImg from "./../resource/changSoft_logo.png";
 
 interface MenuItem {
   text: string;
@@ -67,21 +68,25 @@ export const NavigationLayout = (props: any) => {
         className="custom-toolbar"
         style={{ backgroundColor: "rgb(22, 48, 138)" }}
       >
-        <div className="logo">{/* 원하는 로고를 여기에 추가 */}</div>
+        <div>
+          <Button
+            icon="menu"
+            onClick={handleClick}
+            className="menu-button"
+            style={{ color: "grey", backgroundColor: "white" }}
+          />
 
-        <Button
-          icon="menu"
-          onClick={handleClick}
-          className="menu-button"
-          style={{ color: "grey", backgroundColor: "white" }}
-        />
+          <span
+            className={selected === "Projects" ? "selected-text" : ""}
+            style={{ color: "white" }}
+          >
+            {renderSelectedText()}
+          </span>
+        </div>
 
-        <span
-          className={selected === "Projects" ? "selected-text" : ""}
-          style={{ color: "white" }}
-        >
-          {renderSelectedText()}
-        </span>
+        <div className="logo">
+          {<img alt="LogoImg" src={LogoImg} height="50px" />}
+        </div>
       </div>
 
       <div>

@@ -1,8 +1,6 @@
 import React, {
   useState,
   useEffect,
-  SetStateAction,
-  JSXElementConstructor,
 } from "react";
 import {
   Chart,
@@ -12,13 +10,7 @@ import {
   ChartCategoryAxis,
   ChartCategoryAxisTitle,
   ChartCategoryAxisItem,
-  ChartArea,
-  ChartSeriesItemTooltip,
 } from "@progress/kendo-react-charts";
-import {
-  setExpandedState,
-  setGroupIds,
-} from "@progress/kendo-react-data-tools";
 import "hammerjs";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
