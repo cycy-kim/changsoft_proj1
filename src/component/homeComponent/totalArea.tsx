@@ -73,7 +73,7 @@ const TotalArea = () => {
 
   return (
     <div>
-      <Chart style={{ width: "100%" }}>
+      <Chart style={{height: "36vh"}}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem categories={totalarea.map(categoryContent)}>
             <ChartCategoryAxisTitle text="Total Area(m^2)"/>
