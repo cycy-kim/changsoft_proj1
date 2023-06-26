@@ -96,7 +96,7 @@ const DistributionMap = () => {
 
   return (
     <div style={{display:"flex", alignItems:"center",justifyContent: 'center', }}>
-      <Map center={[34, 128]} zoom={6} style={{ width: '50%', height: '100%'}}>
+      <Map center={[34, 128]} zoom={6} style={{ width: '100%'}}>
         <MapLayers>
           <MapTileLayer
             urlTemplate={tileUrl}
