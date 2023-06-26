@@ -25,7 +25,7 @@ const attribution =
 
 const reqPrefix = "https://maps.googleapis.com/maps/api/geocode/json?address="
 let address = "";
-const reqPostfix = "&key=GoogleMap_API_KEY"
+const reqPostfix = "&key=" + GoogleMap_API_KEY
 
 const geoShapes = [
   {
