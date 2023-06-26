@@ -76,7 +76,7 @@ const UsagePercentage = () => {
 
   return (
     <div>
-      <Chart>
+      <Chart  style={{height: "300px"}}>
         <ChartLegend position="top">
           <ChartLegendTitle text="Usages" font="20px" />
         </ChartLegend>

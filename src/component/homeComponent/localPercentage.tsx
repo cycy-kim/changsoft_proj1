@@ -54,7 +54,7 @@ const LocalPercentage = () => {
 
   return (
     <div className="local-percentage">
-      <Chart>
+      <Chart  style={{height: "300px"}}>
         <ChartLegend position="top">
           <ChartLegendTitle text="Cities" font="20px" />
         </ChartLegend>
