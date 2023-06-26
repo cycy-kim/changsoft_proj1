@@ -66,7 +66,7 @@ export const NavigationLayout = (props: any) => {
     <div>
       <div
         className="custom-toolbar"
-        style={{ backgroundColor: "rgb(22, 48, 138)" }}
+        style={{ backgroundColor: "rgb(84, 76, 216)" }}
       >
         <div>
           <Button
