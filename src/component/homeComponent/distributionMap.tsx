@@ -54,23 +54,6 @@ const markerStyle = {
   },
 };
 
-const test_data_marker : coordinate[]=[
-  {
-    latlng: [37.4950413, 127.1580819],
-    name: "data1",
-    numOfBuildings: 0.8,
-  },
-  {
-    latlng: [37.6600137, 127.0762614],
-    name: "data2",
-    numOfBuildings: 1,
-  },
-  {
-    latlng: [35.3, 129],
-    name: "data3",
-    numOfBuildings: 2,
-  },
-];
 
 const DistributionMap = () => {
   const [markers, setMarkers] = useState<coordinate[]>([]);
@@ -78,14 +61,14 @@ const DistributionMap = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        /*
+        
         console.log("!");
         const response = await axios.get(urlPrefix.IP_port + "/dashboard/project/map");
         const data:coordinate[] = response.data;
 
         console.log(data);
         setMarkers(data);
-        */
+        
       } catch (error) {
         console.error(error);
       }
@@ -110,7 +93,7 @@ const DistributionMap = () => {
             data={markers}
             locationField="latlng"
             //size is determined by ratio of numOfBuildings 
-            valueField="numOfBuildings"
+            valueField="sum"
             style={markerStyle}
           />
 
