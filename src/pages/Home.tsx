@@ -11,6 +11,7 @@ import CompanyPercentage from "../component/homeComponent/companyPercantage";
 import LocalPercentage from "../component/homeComponent/localPercentage";
 import TotalArea from "../component/homeComponent/totalArea";
 import FloorCount from "../component/homeComponent/floorCount";
+import { Button } from "@progress/kendo-react-buttons";
 
 
 interface Tile {
@@ -51,6 +52,10 @@ const tiles: Tile[] = [
     header: "Location Map",
     body: <DistributionMap />,
   },
+  {
+    header: "Total Area by Company",
+    body: <Button />,
+  },
 ];
 
 export const Home: React.FC = () => {
@@ -65,6 +70,7 @@ export const Home: React.FC = () => {
     { col: 3, colSpan: 2, rowSpan: 2 }, // Company %
     { col: 5, colSpan: 2, rowSpan: 2 }, // Usage %
     { col: 7, colSpan: 3, rowSpan: 2 }, // Map
+    { col: 1, colSpan: 9, rowSpan: 2 }, // Total Area by Company
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
