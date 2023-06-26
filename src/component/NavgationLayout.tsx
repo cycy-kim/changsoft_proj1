@@ -26,6 +26,12 @@ export const items: MenuItem[] = [
     icon: "k-i-grid",
   },
   {
+    text: "Insight",
+    selected: false,
+    route: "/insight",
+    icon: "k-i-preview",
+  },
+  {
     text: "User",
     selected: false,
     route: "/user_info",
