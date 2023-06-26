@@ -1,5 +1,4 @@
 export interface coordinate {
-    latlng : [number,number];
-    name:string;
-    numOfBuildings: number;
-  }
+  latlng: [number,number];
+  sum: number;
+}
