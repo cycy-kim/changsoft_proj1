@@ -76,7 +76,7 @@ export const Home: React.FC = () => {
     <div className="building-dashboard-container">
       <TileLayout
         columns={9}
-        rowHeight={174}
+        rowHeight={"25%"}
         positions={data}
         gap={{ rows: 10, columns: 10 }}
         items={tiles.map((tile, index) => ({

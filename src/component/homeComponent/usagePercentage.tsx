@@ -78,7 +78,6 @@ const UsagePercentage = () => {
     <div>
       <Chart  style={{height: "300px"}}>
         <ChartLegend position="top">
-          <ChartLegendTitle text="Usages" font="20px" />
         </ChartLegend>
 
         <ChartSeries>
@@ -88,7 +87,8 @@ const UsagePercentage = () => {
             categoryField="field"
             field="percentage"
             autoFit={true}
-            holeSize={100}
+            holeSize={40}
+            size={45}
           ></ChartSeriesItem>
         </ChartSeries>
         <ChartTooltip render={renderTooltip} />
