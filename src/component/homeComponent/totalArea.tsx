@@ -69,7 +69,7 @@ const TotalArea = () => {
 
   return (
     <div>
-      <Chart>
+      <Chart style={{height: "300px", width: "100%"}}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem
             categories={totalarea
