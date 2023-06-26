@@ -3,7 +3,6 @@ import {
   TileLayout,
   TileLayoutRepositionEvent,
 } from "@progress/kendo-react-layout";
-import { Button } from "@progress/kendo-react-buttons";
 import TotalProject from "./../component/homeComponent/projectIntro";
 import ProjectDetail from "./../component/homeComponent/projectDetail";
 import DistributionMap from "./../component/homeComponent/distributionMap";
