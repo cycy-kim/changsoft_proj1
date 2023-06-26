@@ -57,10 +57,8 @@ const CompanyPercentage = () => {
 
   return (
     <div>
-      <Chart  style={{height: "300px"}}>
-      <ChartLegend position="top" >
-          <ChartLegendTitle text="Companies"/>
-        </ChartLegend>
+      <Chart style={{ height: "300px" }}>
+        <ChartLegend position="top"></ChartLegend>
 
         <ChartSeries>
           <ChartSeriesItem
@@ -69,7 +67,8 @@ const CompanyPercentage = () => {
             categoryField="field"
             field="percentage"
             autoFit={true}
-            holeSize={100}
+            holeSize={40}
+            size={45}
           ></ChartSeriesItem>
         </ChartSeries>
         <ChartTooltip render={renderTooltip} />

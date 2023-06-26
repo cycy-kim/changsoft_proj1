@@ -13,6 +13,7 @@ import {
 import "hammerjs";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
+import "./../../styles/Histogram.scss"
 
 interface projectsTotalArea {
   min_val: number;
@@ -75,12 +76,12 @@ const TotalArea = () => {
       <Chart style={{ height: "300px", width: "100%" }}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem categories={totalarea.map(categoryContent)}>
-            <ChartCategoryAxisTitle text="Total Area(m^2)" />
+            <ChartCategoryAxisTitle text="Total Area(m^2)"/>
           </ChartCategoryAxisItem>
         </ChartCategoryAxis>
 
         <ChartValueAxis>
-          <ChartValueAxisItem min={0} majorUnit={1} />
+          <ChartValueAxisItem min={0} majorUnit={1}/>
         </ChartValueAxis>
 
         <ChartSeries>

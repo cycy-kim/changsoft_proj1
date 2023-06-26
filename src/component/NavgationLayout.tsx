@@ -14,7 +14,7 @@ interface MenuItem {
 
 export const items: MenuItem[] = [
   {
-    text: "Building Hub",
+    text: "Home",
     selected: false,
     route: "/",
     icon: "home",
@@ -55,18 +55,14 @@ export const NavigationLayout = (props: any) => {
   }, [location.pathname]);
 
   const renderSelectedText = () => {
-    if (selected === "User") {
-      return "User";
-    } else {
-      return selected === "Projects" ? "Projects" : "Building Hub";
-    }
+    return "Builderhub SmartDB System";
   };
 
   return (
     <div>
       <div
         className="custom-toolbar"
-        style={{ backgroundColor: "rgb(22, 48, 138)" }}
+        style={{ backgroundColor: "rgb(22, 48, 138)"}}
       >
         <div>
           <Button
