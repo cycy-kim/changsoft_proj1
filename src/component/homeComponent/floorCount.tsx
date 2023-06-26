@@ -22,6 +22,7 @@ import {
 import "hammerjs";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
+import "./../../styles/ChartFont.scss";
 
 interface projectsFloorCount {
   range_num: number;
