@@ -14,7 +14,7 @@ interface MenuItem {
 
 export const items: MenuItem[] = [
   {
-    text: "Home",
+    text: "Building Hub",
     selected: false,
     route: "/",
     icon: "home",
@@ -58,7 +58,7 @@ export const NavigationLayout = (props: any) => {
     if (selected === "User") {
       return "User";
     } else {
-      return selected === "Projects" ? "Projects" : "Home";
+      return selected === "Projects" ? "Projects" : "Building Hub";
     }
   };
 

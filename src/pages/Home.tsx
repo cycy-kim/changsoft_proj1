@@ -33,19 +33,19 @@ const tiles: Tile[] = [
     body: <DistributionMap />,
   },
   {
-    header: "Local Percentage",
+    header: "Locations",
     body: <LocalPercentage />,
   },
   {
-    header: "Company Percentage",
+    header: "Companies",
     body: <CompanyPercentage />,
   },
   {
-    header: "Usage Percentage",
+    header: "Usages",
     body: <UsagePercentage />,
   },
   {
-    header: "Floor Count",
+    header: "Building Floors",
     body: <FloorCount />,
   },
   {
@@ -53,7 +53,7 @@ const tiles: Tile[] = [
     body: <Button></Button>,
   },
   {
-    header: "Total Area",
+    header: "Project Total Area",
     body: <TotalArea />,
   },
 ];
@@ -87,7 +87,7 @@ export const Home: React.FC = () => {
         gap={{ rows: 10, columns: 10 }}
         items={tiles.map((tile, index) => ({
           ...tile,
-          reorderable: tile.header !== "Location Map",
+          reorderable: false,
           header: <strong>{tile.header}</strong>,
           body: <div className="tile-content">{tile.body}</div>,
         }))}
