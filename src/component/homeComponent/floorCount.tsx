@@ -6,6 +6,7 @@ import {
   ChartCategoryAxis,
   ChartCategoryAxisTitle,
   ChartCategoryAxisItem,
+  ChartTooltip,
 } from "@progress/kendo-react-charts";
 import "hammerjs";
 import axios from "axios";
@@ -37,9 +38,17 @@ const FloorCount = () => {
     fetchData();
   }, []);
 
+  const renderTooltip = (e: any) => {
+    return (
+      <div>
+        <p>Floors: {(e.point.dataItem)}</p>
+      </div>
+    );
+  };
+
   return (
     <div>
-      <Chart style={{height: "36vh"}}>
+      <Chart style={{ height: "36vh" }}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem
             categories={totalfloor.map((obj) =>
@@ -59,6 +68,7 @@ const FloorCount = () => {
             color="#00028f"
           ></ChartSeriesItem>
         </ChartSeries>
+        <ChartTooltip render={renderTooltip} />
       </Chart>
     </div>
   );
