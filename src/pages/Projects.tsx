@@ -11,6 +11,7 @@ import {
 } from "@progress/kendo-data-query";
 import axios from "axios";
 import urlPrefix from "./../resource/URL_prefix.json";
+import ProjectDetail from "./../component/homeComponent/projectDetail";
 
 interface projectList_interface {
   project_name: string;
@@ -19,7 +20,7 @@ interface projectList_interface {
 const Projects = () => {
   const [projectList, setProjectList] = useState<string[]>([]);
   const [selected, setSelected] = useState<string>("");
-  const [fileteredList,setFileteredList ] = useState<string[]>([]);
+  const [fileteredList, setFileteredList] = useState<string[]>([]);
 
   const filterData = (filter: FilterDescriptor | CompositeFilterDescriptor) => {
     const data = projectList.slice();
@@ -33,7 +34,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(urlPrefix.IP_port + "/project/id,project_name")
+        console.log(urlPrefix.IP_port + "/project/id,project_name");
         const response = await axios.get(
           urlPrefix.IP_port + "/project/project_name,id"
         );
@@ -45,7 +46,6 @@ const Projects = () => {
 
         setProjectList(projectNames);
         setFileteredList(projectNames);
-
       } catch (error) {
         console.error(error);
       }
@@ -68,8 +68,13 @@ const Projects = () => {
         filterable={true}
         style={{ width: "300px" }}
       />
+
+      <div className="projectDetail">
+        <ProjectDetail />
+      </div>
+
       <div className="projects">
-        <BuildingList projectId = {selected}/>
+        <BuildingList projectId={selected} />
       </div>
     </div>
   );

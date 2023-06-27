@@ -1,34 +1,13 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import urlPrefix from "./../../resource/URL_prefix.json";
-import "../../styles/projectDetail.scss"
+import React from 'react';
 
-const ProjectDetail = () => {
-  const [buildingNum, setBuildingNum] = useState(0);
+const ProjectDetail = () =>
+{
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        
-        const response_num = await axios.get(
-          urlPrefix.IP_port + "/dashboard/building/count"
-        );
-        
-        const data  = JSON.parse(response_num.data);
-        setBuildingNum(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
-    fetchData();
-  }, []);
 
-  return (
-    <div className="total-building-num">
-      {buildingNum}
-    </div>
-  );
-};
+    return (<div>
+        projectDetail입니당ㅎ
+    </div>)
+}
 
-export default ProjectDetail;
+export default ProjectDetail
