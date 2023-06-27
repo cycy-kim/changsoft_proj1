@@ -10,7 +10,7 @@ const ProjectDetail = (props: any) => {
     setSelectedProject(props.projectName); // Update the state when propValue changes
   }, [props.projectName]);
 
-  return <div>{selectedProject} 선택했읍니다,,</div>;
+  return <div>{selectedProject} 선택</div>;
 };
 
 export default ProjectDetail;

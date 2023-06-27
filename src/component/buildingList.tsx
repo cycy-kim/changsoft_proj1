@@ -9,7 +9,7 @@ import {
   GridColumn,
   getSelectedState,
   getSelectedStateFromKeyDown,
-  GridFilterChangeEvent
+  GridFilterChangeEvent,
 } from "@progress/kendo-react-grid";
 import {
   filterBy,
@@ -38,26 +38,47 @@ const DetailComponent = (props: any) => {
   );
 };
 const initialFilter: CompositeFilterDescriptor = {
-  logic: "or",
-  filters: [{ field: "project_id", operator: "contains", value: "3" }],
+  logic: "and",
+  filters: [{ field: "project_id", operator: "eq", value: "0" }],
 };
 
 const BuildingList = (props: any) => {
+  const [initialBuildingList, setInitialBuildingList] = useState<building[]>([]);
   const [buildingList, setBuildingList] = useState<building[]>([]);
   const [page, setPage] = React.useState(initialDataState);
   const [pageSizeValue, setPageSizeValue] = React.useState();
+
   const [categories, setCategories] = React.useState([]);
   const [attributeNames, setAttributeNames] = useState<string[]>([""]);
   const [projectFilter, setProjectFilter] = useState(initialFilter);
 
+  useEffect(() => {
+
+    if (props.projectList) {
+      const projectId:number = props.projectList.find(
+        (item: any) => item.project_name === props.projectName
+      )?.id;
+      if (projectId) {
+        setProjectFilter({
+          logic: "and",
+          filters: [
+            {
+              field: "project_id",
+              operator: "eq",
+              value: (projectId).toString(),
+            },
+          ],
+        });
+        setPage(initialDataState);
+      }
+    }
+    
+  }, [props.projectList, props.projectName]);
 
   useEffect(() => {
-    setProjectFilter({
-      logic :"and",
-      filters: [{ field: "project_id", operator: "eq", value: "" }],
-    })
-  }, [props.projectName]);
-
+    const filteredItems = filterBy(initialBuildingList, projectFilter);
+    setBuildingList(filteredItems);
+  }, [initialBuildingList, projectFilter]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,6 +90,7 @@ const BuildingList = (props: any) => {
 
         setAttributeNames(Object.keys(data[0]));
         setBuildingList(data);
+        setInitialBuildingList(data);
       } catch (error) {
         console.error(error);
       }
@@ -96,7 +118,6 @@ const BuildingList = (props: any) => {
     }
   };
 
-
   return (
     <div className="building-list-container">
       <Grid
@@ -106,20 +127,19 @@ const BuildingList = (props: any) => {
         take={page.take}
         total={buildingList.length}
         dataItemKey={DATA_ITEM_KEY}
-
         pageable={{
           buttonCount: 10,
           pageSizes: [5, 10, 15, "All"],
           pageSizeValue: pageSizeValue,
         }}
         onPageChange={pageChange}
-
         expandField="expanded"
         detail={DetailComponent}
         onExpandChange={expandChange}
-
-      filter={projectFilter}
-        onFilterChange={(e: GridFilterChangeEvent) => setProjectFilter(e.filter)}
+        filter={projectFilter}
+        onFilterChange={(e: GridFilterChangeEvent) =>
+          {}
+        }
       >
         {attributeNames.map((attr) => (
           <GridColumn field={attr} />

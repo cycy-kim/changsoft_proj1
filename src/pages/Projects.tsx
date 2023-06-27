@@ -19,9 +19,9 @@ interface projectList_interface {
 
 const Projects = () => {
   const [projectList, setProjectList] = useState<string[]>([]);
-  const [selectedProjectName, setSelectedProjectName] = useState<string>("");
-  const [selectedProjectId , setSelectedProjectId] = useState(0);
+  const [selectedProjectName, setSelectedProjectName] = useState<string>("project를 선택해주세요");
   const [fileteredList, setFileteredList] = useState<string[]>([]);
+  const [data, setData] = useState();
 
   const filterData = (filter: FilterDescriptor | CompositeFilterDescriptor) => {
     const data = projectList.slice();
@@ -35,9 +35,8 @@ const Projects = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(urlPrefix.IP_port + "/project/id,project_name");
         const response = await axios.get(
-          urlPrefix.IP_port + "/project/project_name,id"
+          urlPrefix.IP_port + "/project/id,project_name"
         );
         const data = JSON.parse(response.data);
 
@@ -45,6 +44,7 @@ const Projects = () => {
           (obj: projectList_interface) => obj.project_name
         );
 
+        setData(data);
         setProjectList(projectNames);
         setFileteredList(projectNames);
       } catch (error) {
@@ -75,7 +75,7 @@ const Projects = () => {
       </div>
 
       <div className="projects">
-        <BuildingList projectName={selectedProjectName} />
+        <BuildingList projectName={selectedProjectName} projectList = {data} />
       </div>
     </div>
   );
