@@ -1,39 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Chart, ChartSeries, ChartSeriesItem, ChartCategoryAxis, ChartCategoryAxisItem } from '@progress/kendo-react-charts';
+import * as React from "react";
+import {
+  Chart,
+  ChartSeries,
+  ChartSeriesItem,
+  ChartCategoryAxis,
+  ChartCategoryAxisItem,
+  ChartValueAxis,
+  ChartValueAxisItem,
+} from "@progress/kendo-react-charts";
 
 export const TotalAreaByCompany = () => {
-  const [constructionData, setConstructionData] = useState<{ construction_company: string; total_area_sum: number }[]>([]);
+  // Sample data
+  const data = [
+    { construction_company: "KCC건설", total_area_sum: 35890.48 },
+    { construction_company: "현대엔지니어링", total_area_sum: 86206.98 },
+    { construction_company: "신세계건설", total_area_sum: 103848.081 },
+    { construction_company: "동부건설", total_area_sum: 297277.7614 },
+    { construction_company: "우미건설", total_area_sum: 333163.8181 },
+    { construction_company: "계룡건설", total_area_sum: 408247.5856 },
+  ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://10.221.72.80:8000/dashboard/project/construction_company_total_area');
-        const jsonData = JSON.parse(response.data);
-        setConstructionData(jsonData);
-      } catch (error) {
-        console.error('Error fetching construction data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  // Transform the data for the Bar Chart
+  const chartData = data.map((item) => ({
+    category: item.construction_company,
+    value: item.total_area_sum,
+  }));
 
   return (
-    <div>
-      <Chart style={{ height: "36vh" }}>
-        <ChartSeries>
-          <ChartSeriesItem
-            type="heatmap"
-            data={constructionData}
-            field="total_area_sum"
-            categoryField="construction_company"
-          />
-        </ChartSeries>
-        <ChartCategoryAxis>
-          <ChartCategoryAxisItem categories={constructionData.map(item => item.construction_company)} />
-        </ChartCategoryAxis>
-      </Chart>
-    </div>
+    <Chart style={{height: "36vh"}}>
+      <ChartCategoryAxis>
+        <ChartCategoryAxisItem
+          categories={chartData.map((item) => item.category)}
+        />
+      </ChartCategoryAxis>
+      <ChartValueAxis>
+        <ChartValueAxisItem />
+      </ChartValueAxis>
+      <ChartSeries>
+        <ChartSeriesItem type="donut" data={chartData} field="value" />
+      </ChartSeries>
+    </Chart>
   );
 };
