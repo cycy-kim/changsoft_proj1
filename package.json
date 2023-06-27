@@ -9,6 +9,7 @@
     "@progress/kendo-react-animation": "^5.14.1",
     "@progress/kendo-react-buttons": "^5.14.1",
     "@progress/kendo-react-charts": "^5.14.1",
+    "@progress/kendo-react-common": "^5.14.1",
     "@progress/kendo-react-conversational-ui": "^5.14.1",
     "@progress/kendo-react-data-tools": "^5.14.1",
     "@progress/kendo-react-dateinputs": "^5.14.1",
