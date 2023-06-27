@@ -19,7 +19,8 @@ interface projectList_interface {
 
 const Projects = () => {
   const [projectList, setProjectList] = useState<string[]>([]);
-  const [selected, setSelected] = useState<string>("");
+  const [selectedProjectName, setSelectedProjectName] = useState<string>("");
+  const [selectedProjectId , setSelectedProjectId] = useState(0);
   const [fileteredList, setFileteredList] = useState<string[]>([]);
 
   const filterData = (filter: FilterDescriptor | CompositeFilterDescriptor) => {
@@ -55,14 +56,14 @@ const Projects = () => {
   }, []);
 
   const handleChange = (event: any) => {
-    setSelected(event.target.value);
+    setSelectedProjectName(event.target.value);
   };
 
   return (
     <div className="projects">
       <DropDownList
         data={fileteredList}
-        value={selected}
+        value={selectedProjectName}
         onChange={handleChange}
         onFilterChange={filterChange}
         filterable={true}
@@ -70,11 +71,11 @@ const Projects = () => {
       />
 
       <div className="projectDetail">
-        <ProjectDetail />
+        <ProjectDetail projectName = {selectedProjectName}/>
       </div>
 
       <div className="projects">
-        <BuildingList projectId={selected} />
+        <BuildingList projectName={selectedProjectName} />
       </div>
     </div>
   );

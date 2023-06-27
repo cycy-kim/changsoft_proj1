@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import urlPrefix from "./../../resource/URL_prefix.json";
 
-const ProjectDetail = () =>
-{
+const ProjectDetail = (props: any) => {
+  const [selectedProject, setSelectedProject] = useState(props.projectName);
 
+  
+  useEffect(() => {
+    setSelectedProject(props.projectName); // Update the state when propValue changes
+  }, [props.projectName]);
 
+  return <div>{selectedProject} 선택했읍니다,,</div>;
+};
 
-    return (<div>
-        projectDetail입니당ㅎ
-    </div>)
-}
-
-export default ProjectDetail
+export default ProjectDetail;

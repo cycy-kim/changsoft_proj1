@@ -52,6 +52,14 @@ const BuildingList = (props: any) => {
 
 
   useEffect(() => {
+    setProjectFilter({
+      logic :"and",
+      filters: [{ field: "project_id", operator: "eq", value: "" }],
+    })
+  }, [props.projectName]);
+
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
