@@ -3,8 +3,8 @@ import {
   TileLayout,
   TileLayoutRepositionEvent,
 } from "@progress/kendo-react-layout";
-import TotalProject from "./../component/homeComponent/projectIntro";
-import ProjectDetail from "./../component/homeComponent/projectDetail";
+import TotalProject from "./../component/homeComponent/totalProjectNum";
+import ProjectDetail from "./../component/homeComponent/totalBuildingNum";
 import DistributionMap from "./../component/homeComponent/distributionMap";
 import UsagePercentage from "./../component/homeComponent/usagePercentage";
 import CompanyPercentage from "../component/homeComponent/companyPercantage";
@@ -12,7 +12,6 @@ import LocalPercentage from "../component/homeComponent/localPercentage";
 import TotalArea from "../component/homeComponent/totalArea";
 import FloorCount from "../component/homeComponent/floorCount";
 import { Button } from "@progress/kendo-react-buttons";
-import TotalAreaByCompany from "../component/homeComponent/totalAreaByCompany";
 
 
 interface Tile {
@@ -55,7 +54,7 @@ const tiles: Tile[] = [
   },
   {
     header: "Total Area by Company",
-    body: <TotalAreaByCompany />,
+    body: "<TotalAreaByCompany />",
   },
 ];
 
