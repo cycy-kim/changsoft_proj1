@@ -74,7 +74,7 @@ const Projects = () => {
       />
 
       <div className="projectDetail">
-        <img style={{ width: "49%", float: "left", paddingLeft: "1%"}} alt="프로젝트 사진 들어갈 자리"/>
+        <img style={{ width: "49%", float: "left", paddingLeft: "1%"}} alt="프로젝트 사진"/>
         <div style={{ width: "49%", float: "right", paddingLeft: "1%" }}>
           <ProjectDetail
             selectedProject={data.find(
