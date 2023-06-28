@@ -82,7 +82,6 @@ export const TotalAreaByCompany: React.FC = () => {
 
     const TreeData = [
       {
-        name: "Market capitalization",
         value: 1,
         items: [
           { value: 1, name: "Price up", items: prizeUpItems },
