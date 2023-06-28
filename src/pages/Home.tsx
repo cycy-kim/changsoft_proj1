@@ -29,22 +29,6 @@ const tiles: Tile[] = [
     body: <ProjectDetail />,
   },
   {
-    header: "Project Total Area",
-    body: <TotalArea />,
-  },
-  {
-    header: "Building Floors",
-    body: <FloorCount />,
-  },
-  {
-    header: "Total Area by Company",
-    body: "<TotalAreaByCompany />",
-  },
-  {
-    header: "Location Map",
-    body: <DistributionMap />,
-  },
-  {
     header: "Locations",
     body: <LocalPercentage />,
   },
@@ -56,6 +40,22 @@ const tiles: Tile[] = [
     header: "Usages",
     body: <UsagePercentage />,
   },
+  {
+    header: "Project Total Area",
+    body: <TotalArea />,
+  },
+  {
+    header: "Building Floors",
+    body: <FloorCount />,
+  },
+  {
+    header: "Location Map",
+    body: <DistributionMap />,
+  },
+  {
+    header: "Total Area by Company",
+    body: ""
+  },
 ];
 
 export const Home: React.FC = () => {
@@ -64,13 +64,13 @@ export const Home: React.FC = () => {
   >([
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total project
     { col: 1, colSpan: 1, rowSpan: 1 }, // Total Building
-    { col: 2, colSpan: 4, rowSpan: 2 }, // Total Area
-    { col: 6, colSpan: 4, rowSpan: 2 }, // Floor Count
-    { col: 1, colSpan: 6, rowSpan: 2 }, // Total Area by Company
-    { col: 7, colSpan: 3, rowSpan: 2 }, // Map
-    { col: 1, colSpan: 3, rowSpan: 2 }, // Local %
-    { col: 4, colSpan: 3, rowSpan: 2 }, // Company %
-    { col: 7, colSpan: 3, rowSpan: 2 }, // Usage %
+    { col: 2, colSpan: 2, rowSpan: 2 }, // Local %
+    { col: 4, colSpan: 2, rowSpan: 2 }, // Company %
+    { col: 6, colSpan: 2, rowSpan: 2 }, // Usage %
+    { col: 1, colSpan: 3, rowSpan: 2 }, // Total Area
+    { col: 4, colSpan: 2, rowSpan: 2 }, // Floor Count
+    { col: 6, colSpan: 2, rowSpan: 2 }, // Map
+    { col: 1, colSpan: 7, rowSpan: 2 }, // Total Area by Company
   ]);
 
   const handleReposition = (e: TileLayoutRepositionEvent) => {
@@ -81,7 +81,7 @@ export const Home: React.FC = () => {
   return (
     <div className="building-dashboard-container">
       <TileLayout
-        columns={9}
+        columns={7}
         rowHeight={"21vh"}
         positions={data}
         gap={{ rows: 10, columns: 10 }}
