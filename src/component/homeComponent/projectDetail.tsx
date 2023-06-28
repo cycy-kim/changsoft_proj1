@@ -1,16 +1,71 @@
 import React, { useState, useEffect } from "react";
+import {
+  Grid,
+  GridColumn,
+  getSelectedState,
+  getSelectedStateFromKeyDown,
+  GridToolbar,
+} from "@progress/kendo-react-grid";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
 
+interface projectDetail_interface {
+  project_name: string;
+  building_area: number;
+  construction_company: string;
+  location: string;
+  total_area: number;
+  construction_start: string;
+  construction_end: string;
+  total_date: string;
+  building_count: number;
+}
 const ProjectDetail = (props: any) => {
-  const [selectedProject, setSelectedProject] = useState(props.projectName);
+  const [projectData, setProjectData] = useState<projectDetail_interface[]>();
 
-  
   useEffect(() => {
-    setSelectedProject(props.projectName); // Update the state when propValue changes
-  }, [props.projectName]);
+    const fetchData = async () => {
+      try {
+        if (props.selectedProject) {
+          const response = await axios.get(
+            urlPrefix.IP_port +
+              "/project/" +
+              props.selectedProject.id +
+              "/project_detail"
+          );
+          const data = JSON.parse(response.data);
+          setProjectData(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  return <div>{selectedProject} 선택</div>;
+    fetchData();
+  }, [props]);
+
+  return (
+    <div>
+      <Grid data={projectData}>
+        <GridColumn field="project_name" title="프로젝트명" />
+        <GridColumn field="building_count" title="프로젝트 내 빌딩수" />
+      </Grid>
+      <Grid data={projectData}>
+        <GridColumn field="building_area" title="건축면적" />
+        <GridColumn field="construction_company" title="건설회사" />
+        <GridColumn field="location" title="지역" />
+        <GridColumn field="total_area" title="문서상 연면적" />
+      </Grid>
+
+      <Grid data={projectData}>
+        <GridColumn title="프로젝트 기간">
+          <GridColumn field="construction_start" title="시작일" />
+          <GridColumn field="construction_end" title="종료일" />
+          <GridColumn field="total_date" title="소요일??" />
+        </GridColumn>
+      </Grid>
+    </div>
+  );
 };
 
 export default ProjectDetail;

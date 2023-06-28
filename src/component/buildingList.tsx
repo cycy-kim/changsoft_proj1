@@ -26,14 +26,15 @@ const DATA_ITEM_KEY = "id";
 const SELECTED_FIELD = "selected";
 const initialDataState = {
   skip: 0,
-  take: 10,
+  take: 15,
 };
 
 //여기에 빌딩상세정보
 const DetailComponent = (props: any) => {
+  //console.log(props)
   return (
     <div>
-      <BuildingDetail building_Id={props.dataItem.id} />
+      <BuildingDetail buildingId={props.dataItem.id} projectId = {props.dataItem.project_id}/>
     </div>
   );
 };
@@ -121,7 +122,7 @@ const BuildingList = (props: any) => {
   return (
     <div className="building-list-container">
       <Grid
-        style={{ height: "400px" }}
+        style={{ height: "60vh", width:"100%" }}
         data={buildingList.slice(page.skip, page.take + page.skip)}
         skip={page.skip}
         take={page.take}
@@ -129,7 +130,7 @@ const BuildingList = (props: any) => {
         dataItemKey={DATA_ITEM_KEY}
         pageable={{
           buttonCount: 10,
-          pageSizes: [5, 10, 15, "All"],
+          pageSizes: [10, 15, 20, "All"],
           pageSizeValue: pageSizeValue,
         }}
         onPageChange={pageChange}
