@@ -12,7 +12,6 @@ import {
 import axios from "axios";
 import urlPrefix from "./../resource/URL_prefix.json";
 import ProjectDetail from "./../component/homeComponent/projectDetail";
-import BuildingDetail from "./../component/buildingDetail";
 
 interface projectList_interface {
   id: number;
