@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Tooltip } from "@progress/kendo-react-tooltip";
 import "@progress/kendo-ui";
 import axios from "axios";
-import * as $ from "jQuery"
+import * as $ from "jQuery";
 
 declare const kendo: any;
 declare const window: any;
@@ -109,17 +109,11 @@ export const TotalAreaByCompany: React.FC = () => {
     });
   }, [data]);
 
-  /*
-      <head>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      </head>
+  return (
+    <div>
       <Tooltip showCallout={false} content={toolTipTemplate}>
         <div id="heatmap" style={{ height: 600, marginBottom: 50 }}></div>
       </Tooltip>
-  */
-
-  return (
-    <div>
     </div>
   );
 };
