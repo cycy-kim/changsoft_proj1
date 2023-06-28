@@ -55,7 +55,7 @@ const tiles: Tile[] = [
   },
   {
     header: "Total Area by Company",
-    body: <></>// <TotalAreaByCompany />,
+    body: <TotalAreaByCompany />,
   },
 ];
 
