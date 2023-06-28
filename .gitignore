@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 googleMap_API_KEY.json
+
+src/resource/project_pictures
