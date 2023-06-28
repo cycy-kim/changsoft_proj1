@@ -7,7 +7,7 @@ import {
   GridToolbar,
 } from "@progress/kendo-react-grid";
 import axios from "axios";
-import urlPrefix from "./../../resource/URL_prefix.json";
+import urlPrefix from "../../resource/URL_prefix.json";
 
 interface projectDetail_interface {
   project_name: string;

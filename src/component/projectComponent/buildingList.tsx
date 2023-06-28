@@ -16,11 +16,11 @@ import {
   CompositeFilterDescriptor,
 } from "@progress/kendo-data-query";
 import axios from "axios";
-import { building } from "./../interface/building";
+import { building } from "../../interface/building";
 import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
 import BuildingDetail from "./buildingDetail";
-import ProjectIntro from "./homeComponent/totalProjectNum";
-import urlPrefix from "./../resource/URL_prefix.json";
+import ProjectIntro from "../homeComponent/totalProjectNum";
+import urlPrefix from "../../resource/URL_prefix.json";
 
 const DATA_ITEM_KEY = "id";
 const SELECTED_FIELD = "selected";
@@ -31,10 +31,12 @@ const initialDataState = {
 
 //여기에 빌딩상세정보
 const DetailComponent = (props: any) => {
-  //console.log(props)
+  console.log(props.dataItem)
   return (
     <div>
-      <BuildingDetail buildingId={props.dataItem.id} projectId = {props.dataItem.project_id}/>
+      <BuildingDetail
+        buildingInfo = {props.dataItem}
+      />
     </div>
   );
 };
@@ -44,19 +46,20 @@ const initialFilter: CompositeFilterDescriptor = {
 };
 
 const BuildingList = (props: any) => {
-  const [initialBuildingList, setInitialBuildingList] = useState<building[]>([]);
+  const [initialBuildingList, setInitialBuildingList] = useState<building[]>(
+    []
+  );
   const [buildingList, setBuildingList] = useState<building[]>([]);
   const [page, setPage] = React.useState(initialDataState);
   const [pageSizeValue, setPageSizeValue] = React.useState();
 
   const [categories, setCategories] = React.useState([]);
-  const [attributeNames, setAttributeNames] = useState<string[]>([""]);
+  //const [attributeNames, setAttributeNames] = useState<string[]>([""]);
   const [projectFilter, setProjectFilter] = useState(initialFilter);
 
   useEffect(() => {
-
     if (props.projectList) {
-      const projectId:number = props.projectList.find(
+      const projectId: number = props.projectList.find(
         (item: any) => item.project_name === props.projectName
       )?.id;
       if (projectId) {
@@ -66,14 +69,13 @@ const BuildingList = (props: any) => {
             {
               field: "project_id",
               operator: "eq",
-              value: (projectId).toString(),
+              value: projectId.toString(),
             },
           ],
         });
         setPage(initialDataState);
       }
     }
-    
   }, [props.projectList, props.projectName]);
 
   useEffect(() => {
@@ -89,7 +91,6 @@ const BuildingList = (props: any) => {
         );
         const data = JSON.parse(response.data);
 
-        setAttributeNames(Object.keys(data[0]));
         setBuildingList(data);
         setInitialBuildingList(data);
       } catch (error) {
@@ -122,7 +123,7 @@ const BuildingList = (props: any) => {
   return (
     <div className="building-list-container">
       <Grid
-        style={{ height: "60vh", width:"100%" }}
+        style={{ height: "60vh", width: "100%" }}
         data={buildingList.slice(page.skip, page.take + page.skip)}
         skip={page.skip}
         take={page.take}
@@ -138,13 +139,12 @@ const BuildingList = (props: any) => {
         detail={DetailComponent}
         onExpandChange={expandChange}
         filter={projectFilter}
-        onFilterChange={(e: GridFilterChangeEvent) =>
-          {}
-        }
+        onFilterChange={(e: GridFilterChangeEvent) => {}}
       >
-        {attributeNames.map((attr) => (
-          <GridColumn field={attr} />
-        ))}
+        <GridColumn title="Building Name" field="building_name" />
+        <GridColumn title="Total Area" field="total_area" />
+        <GridColumn title="Stories" field="stories" />
+        <GridColumn title="Sub Buildings" field="sub_buildings" />
       </Grid>
     </div>
   );
