@@ -78,6 +78,7 @@ const LocalPercentage = () => {
             autoFit={true}
             holeSize={40}
             size={45}
+            color={"blue"}
           />
         </ChartSeries>
         <ChartTooltip render={renderTooltip} />
