@@ -3,7 +3,7 @@ import {
   useEffect,
 } from "react";
 import axios from "axios";
-import "./../../styles/projectIntro.scss"
+import "./../../styles/totalProjectNum.scss"
 import urlPrefix from "./../../resource/URL_prefix.json"
 
 const TotalProject = () => {
@@ -26,8 +26,8 @@ const TotalProject = () => {
   }, []);
 
   return (
-    <div>
-      <div className="total-project-num">{projectNum}</div>
+    <div className="total-project-num">
+      <div className="project-child">{projectNum}</div>
     </div>
   );
 };

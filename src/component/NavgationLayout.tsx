@@ -68,14 +68,14 @@ export const NavigationLayout = (props: any) => {
     <div>
       <div
         className="custom-toolbar"
-        style={{ backgroundColor: "rgb(22, 48, 138)"}}
+        style={{ background: "linear-gradient(135deg, rgb(22, 48, 138) 40%, rgb(255, 255, 255) 90%)", }}
       >
         <div>
           <Button
             icon="menu"
             onClick={handleClick}
             className="menu-button"
-            style={{ color: "grey", backgroundColor: "white" }}
+            style={{ color: "rgb(22, 48, 138)", backgroundColor: "white" }}
           />
 
           <span
@@ -85,7 +85,6 @@ export const NavigationLayout = (props: any) => {
             {renderSelectedText()}
           </span>
         </div>
-
         <div className="logo">
           {<img alt="LogoImg" src={LogoImg} height="50px" />}
         </div>

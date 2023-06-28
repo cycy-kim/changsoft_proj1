@@ -23,5 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 googleMap_API_KEY.json
+<<<<<<< HEAD
 
 src/resource/project_pictures
+=======
+totalAreaByCompany.tsx
+>>>>>>> 6d585edc8df796a7c201d688f6dd14eaa8fe16d6

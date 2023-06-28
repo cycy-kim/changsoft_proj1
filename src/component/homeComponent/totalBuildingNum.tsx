@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
-import "../../styles/projectDetail.scss"
+import "./../../styles/totalBuildingNum.scss";
 
 const ProjectDetail = () => {
   const [buildingNum, setBuildingNum] = useState(0);
@@ -9,12 +9,11 @@ const ProjectDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const response_num = await axios.get(
           urlPrefix.IP_port + "/dashboard/building/count"
         );
-        
-        const data  = JSON.parse(response_num.data);
+
+        const data = JSON.parse(response_num.data);
         setBuildingNum(data);
       } catch (error) {
         console.error(error);
@@ -26,7 +25,7 @@ const ProjectDetail = () => {
 
   return (
     <div className="total-building-num">
-      {buildingNum}
+      <div className="building-child">{buildingNum}</div>
     </div>
   );
 };
