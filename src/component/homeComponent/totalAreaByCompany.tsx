@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Tooltip } from "@progress/kendo-react-tooltip";
 import "@progress/kendo-ui";
 import axios from "axios";
-import jQuery from "jquery";
+import * as $ from "jQuery"
 
 declare const kendo: any;
 declare const window: any;
 
-window.$ = window.jQuery = jQuery;
+window.$ = window.jquery = jQuery;
 
 interface CompanyData {
   construction_company: string;
@@ -109,14 +109,17 @@ export const TotalAreaByCompany: React.FC = () => {
     });
   }, [data]);
 
-  return (
-    <div>
+  /*
       <head>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       </head>
       <Tooltip showCallout={false} content={toolTipTemplate}>
         <div id="heatmap" style={{ height: 600, marginBottom: 50 }}></div>
       </Tooltip>
+  */
+
+  return (
+    <div>
     </div>
   );
 };
