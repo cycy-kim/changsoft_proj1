@@ -1,44 +1,122 @@
-import * as React from "react";
-import {
-  Chart,
-  ChartSeries,
-  ChartSeriesItem,
-  ChartCategoryAxis,
-  ChartCategoryAxisItem,
-  ChartValueAxis,
-  ChartValueAxisItem,
-} from "@progress/kendo-react-charts";
+import React, { useCallback, useEffect, useState } from "react";
+import { Tooltip } from "@progress/kendo-react-tooltip";
+import "@progress/kendo-ui";
+import axios from "axios";
+import jQuery from "jquery";
 
-export const TotalAreaByCompany = () => {
-  // Sample data
-  const data = [
-    { construction_company: "KCC건설", total_area_sum: 35890.48 },
-    { construction_company: "현대엔지니어링", total_area_sum: 86206.98 },
-    { construction_company: "신세계건설", total_area_sum: 103848.081 },
-    { construction_company: "동부건설", total_area_sum: 297277.7614 },
-    { construction_company: "우미건설", total_area_sum: 333163.8181 },
-    { construction_company: "계룡건설", total_area_sum: 408247.5856 },
-  ];
+declare const kendo: any;
+declare const window: any;
 
-  // Transform the data for the Bar Chart
-  const chartData = data.map((item) => ({
-    category: item.construction_company,
-    value: item.total_area_sum,
-  }));
+window.$ = window.jQuery = jQuery;
+
+interface CompanyData {
+  construction_company: string;
+  total_area_sum: number;
+}
+
+interface Item {
+  value: number;
+  name: string;
+  change: string;
+}
+
+export const TotalAreaByCompany: React.FC = () => {
+  const [data, setData] = useState<Item[]>([]);
+
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await axios.get<CompanyData[]>(
+        "http://192.168.0.129:8000/dashboard/project/construction_company_total_area"
+      );
+      const companyData = response.data;
+
+      const items: Item[] = companyData.map((item: CompanyData) => ({
+        value: item.total_area_sum,
+        name: item.construction_company,
+        change: "",
+      }));
+
+      setData(items);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }, []);
+
+  const nFormatter = (num: number) => {
+    if (num >= 1000000000) {
+      return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + "B";
+    }
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    }
+    return num;
+  };
+
+  const toolTipTemplate = (props: any) => {
+    if (
+      props.title !== '{"value":1,"name":"Price' &&
+      props.title !== '{"name":"Market'
+    ) {
+      let item = JSON.parse(props.title);
+      return (
+        <span>
+          <span>Company: {item.name}</span>
+          <br />
+          <span>Change: {item.change}%</span>
+          <br />
+          <span>Market cap: {nFormatter(item.value)}</span>
+        </span>
+      );
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    const prizeUpItems = data.filter((item: Item) => item.value >= 0);
+
+    const TreeData = [
+      {
+        name: "Market capitalization",
+        value: 1,
+        items: [
+          { value: 1, name: "Price up", items: prizeUpItems },
+          { value: 1, name: "Price down", items: [] }, // No prizeDownItems in the fetched data
+        ],
+      },
+    ];
+
+    window.$("#heatmap").kendoTreeMap({
+      dataSource: new kendo.data.HierarchicalDataSource({
+        data: TreeData,
+        schema: {
+          model: {
+            children: "items",
+          },
+        },
+      }),
+      valueField: "value",
+      textField: "name",
+      colors: [
+        ["#00AD51", "#00EF81"],
+        ["#FF0000", "#FF8F8F"],
+      ],
+    });
+  }, [data]);
 
   return (
-    <Chart style={{height: "36vh"}}>
-      <ChartCategoryAxis>
-        <ChartCategoryAxisItem
-          categories={chartData.map((item) => item.category)}
-        />
-      </ChartCategoryAxis>
-      <ChartValueAxis>
-        <ChartValueAxisItem />
-      </ChartValueAxis>
-      <ChartSeries>
-        <ChartSeriesItem type="donut" data={chartData} field="value" />
-      </ChartSeries>
-    </Chart>
+    <div>
+      <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      </head>
+      <Tooltip showCallout={false} content={toolTipTemplate}>
+        <div id="heatmap" style={{ height: 600, marginBottom: 50 }}></div>
+      </Tooltip>
+    </div>
   );
 };
