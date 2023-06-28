@@ -12,7 +12,6 @@ import {
 import axios from "axios";
 import urlPrefix from "./../resource/URL_prefix.json";
 import ProjectDetail from "./../component/homeComponent/projectDetail";
-import BuildingDetail from "./../component/buildingDetail";
 
 interface projectList_interface {
   id: number;
@@ -74,7 +73,7 @@ const Projects = () => {
       />
 
       <div className="projectDetail">
-        <img style={{ width: "49%", float: "left", paddingLeft: "1%"}} alt="프로젝트 사진 들어갈 자리"/>
+        <img style={{ width: "49%", float: "left", paddingLeft: "1%"}} alt="프로젝트 사진"/>
         <div style={{ width: "49%", float: "right", paddingLeft: "1%" }}>
           <ProjectDetail
             selectedProject={data.find(
