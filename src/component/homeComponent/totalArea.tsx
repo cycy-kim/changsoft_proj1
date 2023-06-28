@@ -76,7 +76,7 @@ const TotalArea = () => {
       <Chart style={{height: "36vh"}}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem categories={totalarea.map(categoryContent)}>
-            <ChartCategoryAxisTitle text="Total Area(m^2)"/>
+            <ChartCategoryAxisTitle text="Total Area (m²)"/>
           </ChartCategoryAxisItem>
         </ChartCategoryAxis>
 
