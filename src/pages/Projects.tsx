@@ -12,15 +12,19 @@ import {
 import axios from "axios";
 import urlPrefix from "./../resource/URL_prefix.json";
 import ProjectDetail from "./../component/homeComponent/projectDetail";
+import BuildingDetail from "./../component/buildingDetail";
 
 interface projectList_interface {
+  id: number;
   project_name: string;
 }
 
 const Projects = () => {
   const [projectList, setProjectList] = useState<string[]>([]);
-  const [selected, setSelected] = useState<string>("");
+  const [selectedProjectName, setSelectedProjectName] =
+    useState<string>("project를 선택해주세요");
   const [fileteredList, setFileteredList] = useState<string[]>([]);
+  const [data, setData] = useState<projectList_interface[]>([]);
 
   const filterData = (filter: FilterDescriptor | CompositeFilterDescriptor) => {
     const data = projectList.slice();
@@ -34,11 +38,11 @@ const Projects = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(urlPrefix.IP_port + "/project/id,project_name");
         const response = await axios.get(
-          urlPrefix.IP_port + "/project/project_name,id"
+          urlPrefix.IP_port + "/project/id,project_name"
         );
         const data = JSON.parse(response.data);
+        setData(data);
 
         const projectNames = data.map(
           (obj: projectList_interface) => obj.project_name
@@ -55,14 +59,14 @@ const Projects = () => {
   }, []);
 
   const handleChange = (event: any) => {
-    setSelected(event.target.value);
+    setSelectedProjectName(event.target.value);
   };
 
   return (
     <div className="projects">
       <DropDownList
         data={fileteredList}
-        value={selected}
+        value={selectedProjectName}
         onChange={handleChange}
         onFilterChange={filterChange}
         filterable={true}
@@ -70,11 +74,18 @@ const Projects = () => {
       />
 
       <div className="projectDetail">
-        <ProjectDetail />
+        <img style={{ width: "49%", float: "left", paddingLeft: "1%"}} alt="프로젝트 사진"/>
+        <div style={{ width: "49%", float: "right", paddingLeft: "1%" }}>
+          <ProjectDetail
+            selectedProject={data.find(
+              (data: any) => data.project_name === selectedProjectName
+            )}
+          />
+        </div>
       </div>
 
       <div className="projects">
-        <BuildingList projectId={selected} />
+        <BuildingList projectName={selectedProjectName} projectList={data} />
       </div>
     </div>
   );

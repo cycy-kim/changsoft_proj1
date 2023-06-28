@@ -1,54 +1,55 @@
 import React, {
-    useState,
-    useEffect,
-    SetStateAction,
-    JSXElementConstructor,
-  } from "react";
-  import {
-    Grid,
-    GridColumn,
-    getSelectedState,
-    getSelectedStateFromKeyDown,
-  } from "@progress/kendo-react-grid";
-  import {
-    Chart,
-    ChartLegend,
-    ChartSeries,
-    ChartSeriesItem,
-    ChartSeriesLabels,
-  } from "@progress/kendo-react-charts";
-  import {
-    IntlProvider,
-    load,
-    LocalizationProvider,
-    loadMessages,
-    IntlService,
-  } from "@progress/kendo-react-intl";
-  import { getter } from "@progress/kendo-react-common";
-  import {
-    filterBy,
-    CompositeFilterDescriptor,
-    GroupDescriptor,
-    groupBy,
-    GroupResult,
-    State,
-    DataResult,
-    process,
-    AggregateDescriptor,
-  } from "@progress/kendo-data-query";
-  import {
-    setExpandedState,
-    setGroupIds,
-  } from "@progress/kendo-react-data-tools";
-  import axios from "axios";
-  import { building } from "./../interface/building";
-  import { MultiSelectPropsContext } from "@progress/kendo-react-dropdowns";
-  
+  useState,
+  useEffect,
+  SetStateAction,
+  JSXElementConstructor,
+  lazy,
+} from "react";
+import {
+  Grid,
+  GridColumn,
+  getSelectedState,
+  getSelectedStateFromKeyDown,
+  GridToolbar,
+} from "@progress/kendo-react-grid";
+import axios from "axios";
+import urlPrefix from "./../resource/URL_prefix.json";
+import { ExcelExport } from "@progress/kendo-react-excel-export";
 
-const BuildingDetail = (props: any)=>{
-    return (<div>
-        {props.building_Id}를 선택한 BuildingDetail 입니다ㅎ
-    </div>)
-}
+const BuildingDetail = (props: any) => {
+  const [imgPath, setImgPath] = useState<string>("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        
+        const response = await axios.get(
+          urlPrefix.IP_port +
+            "/project/" +
+            props.projectId +
+            "/building/" +
+            props.buildingId
+        );
+        const data = JSON.parse(response.data);
+        const importedImagePath = await import("./../resource/project_pictures/" +
+        data[0].project_name +
+        "/" +
+        data[0].building_name +
+        "/ScreenShot.png");
+        setImgPath(importedImagePath.default);
+
+        console.log(imgPath)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [props, imgPath]);
+
+  return <div>
+    {imgPath && <img src={imgPath} alt="Building Image" height = {"300px"} width = {"400px"}/>}
+  </div>;
+};
 
 export default BuildingDetail;

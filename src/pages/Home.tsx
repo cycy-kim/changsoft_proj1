@@ -11,7 +11,6 @@ import CompanyPercentage from "../component/homeComponent/companyPercantage";
 import LocalPercentage from "../component/homeComponent/localPercentage";
 import TotalArea from "../component/homeComponent/totalArea";
 import FloorCount from "../component/homeComponent/floorCount";
-import { TotalAreaByCompany } from "../component/homeComponent/totalAreaByCompany";
 import { Button } from "@progress/kendo-react-buttons";
 
 
@@ -55,7 +54,11 @@ const tiles: Tile[] = [
   },
   {
     header: "Total Area by Company",
+<<<<<<< HEAD
     body: <TotalAreaByCompany />,
+=======
+    body: ""
+>>>>>>> 808c0f5f1c097cbace8ea5b833a567eaa662e132
   },
 ];
 
