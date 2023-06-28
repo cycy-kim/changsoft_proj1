@@ -62,7 +62,7 @@ const CompanyPercentage = () => {
   };
 
   return (
-    <div>
+    <div className="chart-container">
       <Chart style={{ height: "36vh" }}>
         <ChartLegend position="top" />
 

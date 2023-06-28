@@ -14,6 +14,7 @@ import "hammerjs";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
 import "./../../styles/Histogram.scss"
+import "./../../styles/totalArea.scss"
 
 interface projectsTotalArea {
   min_val: number;
@@ -72,7 +73,7 @@ const TotalArea = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bar-chart-container">
       <Chart style={{height: "36vh"}}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem categories={totalarea.map(categoryContent)}>
