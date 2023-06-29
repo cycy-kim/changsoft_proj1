@@ -27,28 +27,36 @@ const SubBuildingList = (props: any) => {
           urlPrefix.IP_port + "/asd/" + props.buildingInfo.id
         );
         const data: subBuildingInfo_interface[] = JSON.parse(response.data); // assuming the API response contains an array of buildings
-        //console.log(data)
+        
+        //console.log("a")
+        //console.log(data[0].sub_building_name)
+        let subBuildingNames: string[] = [];
+        console.log(data.length)
+        for(let i =0; i < data.length ; i++)
+        {
+          subBuildingNames.push(data[i].sub_building_name)
+        }
+        /*
         setSubBuildinglist(
           data.map((obj: subBuildingInfo_interface) => obj.sub_building_name)
         );
+        */
+        setSubBuildinglist(subBuildingNames)
 
-        console.log(data.map((obj: subBuildingInfo_interface) => obj.sub_building_name))
-        console.log(subBuildinglist);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
+
   }, [props]);
 
   return (
     <div>
       <DropDownList
         data={subBuildinglist}
-        textField="name" // assuming the building object has a "name" property
-        dataItemKey="id" // assuming the building object has an "id" property
-        value={selectedBuilding ? selectedBuilding.id : null}
+        //value={selectedBuilding ? selectedBuilding.id : null}
         // onChange={handleBuildingChange}
       />
       {
