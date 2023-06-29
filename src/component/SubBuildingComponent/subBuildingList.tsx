@@ -21,23 +21,26 @@ const SubBuildingList = (props: any) => {
     useState<buildingInfo_interface>();
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("your_api_url_here");
+        const data: subBuildingInfo_interface[] = response.data; // assuming the API response contains an array of buildings
+  
+        setSubBuildinglist(
+          data.map((obj: subBuildingInfo_interface) => obj.sub_building_name)
+        );
+  
+        console.log(subBuildinglist)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
     setSelectedBuilding(props.buildingInfo);
+    fetchData();
   }, [props]);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("your_api_url_here");
-      const data: subBuildingInfo_interface[] = response.data; // assuming the API response contains an array of buildings
-
-      setSubBuildinglist(
-        data.map((obj: subBuildingInfo_interface) => obj.sub_building_name)
-      );
-
-      console.log(subBuildinglist)
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+ 
 
   return (
     <div>
