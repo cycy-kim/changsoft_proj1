@@ -24,7 +24,7 @@ const SubBuildingList = (props: any) => {
       try {
         setSelectedBuilding(props.buildingInfo);
         const response = await axios.get(
-          urlPrefix.IP_port + "/asd/" + props.buildingInfo.id
+          urlPrefix.IP_port + "/sub_building/" + props.buildingInfo.id
         );
         const data: subBuildingInfo_interface[] = JSON.parse(response.data); // assuming the API response contains an array of buildings
         
