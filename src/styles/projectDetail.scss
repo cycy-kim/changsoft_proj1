@@ -1,0 +1,24 @@
+.custom-header-cell {
+    background-color: rgb(5, 40, 180);
+    color: white;
+    font-weight: bold;
+    border-bottom: 1px solid white !important;
+  
+    &:not(:last-child) {
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        height: 50%;
+        width: 1px;
+        background-color: white;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  
+  .k-grid tr.k-grid-row > td {
+    border-color: white;
+  }
+  
