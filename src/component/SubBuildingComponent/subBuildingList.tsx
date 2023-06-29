@@ -54,6 +54,7 @@ const SubBuildingList = (props: any) => {
 
   return (
     <div>
+      <div>{props.buildingInfo?.building_name}</div>
       <DropDownList
         data={subBuildinglist}
         //value={selectedBuilding ? selectedBuilding.id : null}
