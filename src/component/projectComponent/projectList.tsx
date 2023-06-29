@@ -99,7 +99,6 @@ const ProjectList = (props: any) => {
         />
         <DropDownList
 
-
           data={data.reduce((acc, { location }) => {
             return acc.includes(location) ? acc : [...acc, location];
           }, [])}

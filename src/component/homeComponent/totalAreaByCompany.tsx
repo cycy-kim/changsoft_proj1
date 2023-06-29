@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Tooltip } from "@progress/kendo-react-tooltip";
 import "@progress/kendo-ui";
 import axios from "axios";
-import * as $ from "jQuery"
 
 declare const kendo: any;
 declare const window: any;

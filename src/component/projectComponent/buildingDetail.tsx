@@ -26,11 +26,11 @@ const BuildingDetail = (props: any) => {
 
         const response = await axios.get(
           urlPrefix.IP_port +
-            "/project/" +
-            props.buildingInfo.project_id +
             "/building/" +
-            props.buildingInfo.id
+            props.buildingInfo.id+
+            "/get_project_name"
         );
+
         const data = JSON.parse(response.data);
         const importedImagePath = await import(
           "./../../resource/project_pictures/" +

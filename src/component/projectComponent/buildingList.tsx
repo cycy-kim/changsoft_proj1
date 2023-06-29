@@ -89,7 +89,7 @@ const BuildingList = (props: any) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          urlPrefix.IP_port + "/dashboard/building"
+          urlPrefix.IP_port + "/building/additional_sub_info"
         );
         const data = JSON.parse(response.data);
 
@@ -146,7 +146,7 @@ const BuildingList = (props: any) => {
         <GridColumn title="Building Name" field="building_name" />
         <GridColumn title="Total Area" field="total_area" />
         <GridColumn title="Stories" field="stories" />
-        <GridColumn title="Sub Buildings" field="sub_buildings" />
+        <GridColumn title="Sub Buildings" field="sub_bldg_list" />
       </Grid>
     </div>
   );
