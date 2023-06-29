@@ -9,6 +9,7 @@ import {
 import { Button } from "@progress/kendo-react-buttons";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
+import { useNavigate } from 'react-router-dom';
 import { buildingInfo_interface } from "./../../interface/buildingInfo_interface";
 
 const BuildingDetail = (props: any) => {
@@ -48,9 +49,11 @@ const BuildingDetail = (props: any) => {
     fetchData();
   }, [props, imgPath]);
 
+  const navigate = useNavigate();
   const onClick=()=>{
-    window.open("as" ,'_blank')
+    navigate("/sub_building_detail");
   }
+
   return (
     <div>
       <div style={{ width: "30%", float: "left", paddingLeft: "1%" }}>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const SubBuildingDetail = () => {
+const SubBuildingDetail: React.FC = () => {
 
-    return{
-        
-    }
+    return(<div>야미~</div>)
 
 }
+
+export default SubBuildingDetail

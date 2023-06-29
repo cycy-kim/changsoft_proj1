@@ -6,6 +6,7 @@ import { Home } from "./pages/Home";
 import Projects from "./pages/Projects";
 import UserPage from "./pages/user";
 import Insight from "./pages/insight";
+import SubBuildingDetail from "./pages/SubBuildingDetail"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/insight" element={<Insight />} />
             <Route path="/user_info" element={<UserPage />} />
+            <Route path="/sub_building_detail" element={<SubBuildingDetail />} />
           </Routes>
         </NavigationLayout>
     </div>
