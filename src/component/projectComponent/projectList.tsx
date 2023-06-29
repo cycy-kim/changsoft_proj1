@@ -58,7 +58,7 @@ const ProjectList = (props: any) => {
 
     fetchData();
   }, []);
-  
+
   const filterData = (filter: FilterDescriptor | CompositeFilterDescriptor) => {
     const data = projectList.slice();
     return filterBy(data, filter);
@@ -88,20 +88,27 @@ const ProjectList = (props: any) => {
 
       <div style={{ width: "300px" }}>
         <DropDownList
+
           data={data.reduce((acc, { construction_company }) => {
             return acc.includes(construction_company)
               ? acc
               : [...acc, construction_company];
           }, [])}
+
+
         />
         <DropDownList
+
+
           data={data.reduce((acc, { location }) => {
             return acc.includes(location) ? acc : [...acc, location];
           }, [])}
+
+          
         />
+        <Button onClick={applyFilter}>apply filters</Button>
       </div>
 
-      <Button onClick={applyFilter}>asd</Button>
     </div>
   );
 };

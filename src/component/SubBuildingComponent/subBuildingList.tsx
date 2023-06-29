@@ -14,8 +14,7 @@ import { subBuildingInfo_interface } from "../../interface/subBuildingInfo_inter
 const SubBuildingList = (props: any) => {
   const [subBuildinglist, setSubBuildinglist] = useState<string[]>([]);
 
-  const [selectedSubBuilding, setSelectedSubBuilding] =
-    useState<number>(0);
+  const [selectedSubBuilding, setSelectedSubBuilding] = useState<number>(0);
 
   const [selectedBuilding, setSelectedBuilding] =
     useState<buildingInfo_interface>();
@@ -23,6 +22,7 @@ const SubBuildingList = (props: any) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get("your_api_url_here");
         const data: subBuildingInfo_interface[] = response.data; // assuming the API response contains an array of buildings
   
@@ -31,17 +31,37 @@ const SubBuildingList = (props: any) => {
         );
   
         console.log(subBuildinglist)
+=======
+        setSelectedBuilding(props.buildingInfo);
+        const response = await axios.get(
+          urlPrefix.IP_port + "/asd/" + props.buildingInfo.id
+        );
+        const data: subBuildingInfo_interface[] = JSON.parse(response.data); // assuming the API response contains an array of buildings
+        //console.log(data)
+        setSubBuildinglist(
+          data.map((obj: subBuildingInfo_interface) => obj.sub_building_name)
+        );
+
+        console.log(data.map((obj: subBuildingInfo_interface) => obj.sub_building_name))
+        console.log(subBuildinglist);
+>>>>>>> 4870d75472ad3434260abce8d428acd3a6f4a39a
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
+<<<<<<< HEAD
     setSelectedBuilding(props.buildingInfo);
     fetchData();
   }, [props]);
 
  
 
+=======
+    fetchData();
+  }, [props]);
+
+>>>>>>> 4870d75472ad3434260abce8d428acd3a6f4a39a
   return (
     <div>
       <DropDownList
@@ -51,13 +71,14 @@ const SubBuildingList = (props: any) => {
         value={selectedBuilding ? selectedBuilding.id : null}
         // onChange={handleBuildingChange}
       />
-     {//SubBuildingList && (
+      {
+        //SubBuildingList && (
         //<div>
-          //<h3>{SubBuildingList.sub_building_name}</h3>
-          //{/* Render additional building details */}
+        //<h3>{SubBuildingList.sub_building_name}</h3>
+        //{/* Render additional building details */}
         //</div>
-      //)
-    }
+        //)
+      }
     </div>
   );
 };
