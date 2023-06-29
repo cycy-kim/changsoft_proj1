@@ -61,7 +61,7 @@ export const NavigationLayout = (props: any) => {
   }, [location.pathname]);
 
   const renderSelectedText = () => {
-    return "Builderhub SmartDB System";
+    return "BuilderHub SmartDB System";
   };
 
   return (
