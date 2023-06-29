@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { buildingInfo_interface } from "./../interface/buildingInfo_interface";
+import SubBuildingList from "../component/SubBuildingComponent/subBuildingList";
 
 const SubBuildingDetail = (props: any) => {
   const [buildingInfo, setBuildingInfo] = useState<
@@ -10,9 +11,11 @@ const SubBuildingDetail = (props: any) => {
     setBuildingInfo(props.buildingInfo);
   }, [props]);
 
-
-
-  return <div>{buildingInfo?.id}</div>;
+  return (
+    <div>
+      <SubBuildingList buildingInfo = {buildingInfo} />
+    </div>
+  );
 };
 
 export default SubBuildingDetail;
