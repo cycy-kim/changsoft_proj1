@@ -26,8 +26,6 @@ const BuildingDetail = (props: any) => {
 
         const response = await axios.get(
           urlPrefix.IP_port +
-            "/project/" +
-            props.buildingInfo.project_id +
             "/building/" +
             props.buildingInfo.id
         );
