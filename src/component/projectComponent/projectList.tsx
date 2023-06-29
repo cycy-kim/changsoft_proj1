@@ -56,6 +56,13 @@ const ProjectList = (props: any) => {
     fetchData();
   }, []);
 
+  useEffect(() => { const projectNames = filteredData.map(
+    (obj: projectList_interface) => obj.project_name
+  );
+  setFileteredList(projectNames);
+  console.log(projectNames) }, [filteredData]);
+
+
   const filterData = (filter: FilterDescriptor | CompositeFilterDescriptor) => {
     const data = projectList.slice();
     return filterBy(data, filter);
@@ -73,8 +80,10 @@ const ProjectList = (props: any) => {
   const applyFilter = () => {};
 
   const construction_company_onChange = (event: any) => {
-
-    
+    projectFilter.filters = projectFilter.filters.filter((filter) => {
+      // Remove filters where the field is "construction_company"
+      return !("field" in filter && filter.field === "construction_company");
+    });
 
     projectFilter.filters.push({
       field: "construction_company",
@@ -82,10 +91,24 @@ const ProjectList = (props: any) => {
       value: event.target.value,
     });
 
-    setFilteredData(filterBy(filteredData, projectFilter));
-    console.log( filterBy(filteredData, projectFilter));
+    setFilteredData(filterBy(data, projectFilter));
+    
   };
-  const location_onChange = (event: any) => {};
+  const location_onChange = (event: any) => {
+    projectFilter.filters = projectFilter.filters.filter((filter) => {
+      // Remove filters where the field is "construction_company"
+      return !("field" in filter && filter.field === "location");
+    });
+
+    projectFilter.filters.push({
+      field: "location",
+      operator: "eq",
+      value: event.target.value,
+    });
+
+    setFilteredData(filterBy(data, projectFilter));
+    
+  };
 
   return (
     <div>
