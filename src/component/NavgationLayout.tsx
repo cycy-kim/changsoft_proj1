@@ -77,7 +77,6 @@ export const NavigationLayout = (props: any) => {
             className="menu-button"
             style={{ color: "rgb(22, 48, 138)", backgroundColor: "white" }}
           />
-
           <span
             className={selected === "Projects" ? "selected-text" : ""}
             style={{ color: "white" }}
@@ -85,6 +84,7 @@ export const NavigationLayout = (props: any) => {
             {renderSelectedText()}
           </span>
         </div>
+
         <div className="logo">
           {<img alt="LogoImg" src={LogoImg} height="50px" />}
         </div>

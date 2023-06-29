@@ -28,7 +28,9 @@ const LocalPercentage = () => {
         const top5 = data.slice(0, 5);
 
         // 나머지 데이터 합산하여 "Others" 데이터 생성
-        const othersPercentage = data.slice(5).reduce((acc: number, curr: any) => acc + curr.percentage, 0);
+        const othersPercentage = data
+          .slice(5)
+          .reduce((acc: number, curr: any) => acc + curr.percentage, 0);
         const othersData = { field: "Others", percentage: othersPercentage };
 
         // "Others" 데이터를 포함하여 새로운 배열 생성
@@ -65,24 +67,26 @@ const LocalPercentage = () => {
   };
 
   return (
-    <div className="local-percentage">
-      <Chart style={{ height: "36vh" }}>
-        <ChartLegend position="top" />
+    <div className="chart-container">
+      <div className="local-percentage">
+        <Chart style={{ height: "36vh" }}>
+          <ChartLegend position="top" />
 
-        <ChartSeries>
-          <ChartSeriesItem
-            type="donut"
-            data={percentages}
-            categoryField="field"
-            field="percentage"
-            autoFit={true}
-            holeSize={40}
-            size={45}
-            color={"blue"}
-          />
-        </ChartSeries>
-        <ChartTooltip render={renderTooltip} />
-      </Chart>
+          <ChartSeries>
+            <ChartSeriesItem
+              type="donut"
+              data={percentages}
+              categoryField="field"
+              field="percentage"
+              autoFit={true}
+              holeSize={40}
+              size={45}
+              color={"blue"}
+            />
+          </ChartSeries>
+          <ChartTooltip render={renderTooltip} />
+        </Chart>
+      </div>
     </div>
   );
 };
