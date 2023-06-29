@@ -14,6 +14,9 @@ import { subBuildingInfo_interface } from "../../interface/subBuildingInfo_inter
 const SubBuildingList = (props: any) => {
   const [subBuildinglist, setSubBuildinglist] = useState<string[]>([]);
 
+  const [selectedSubBuilding, setSelectedSubBuilding] =
+    useState<number>(0);
+
   const [selectedBuilding, setSelectedBuilding] =
     useState<buildingInfo_interface>();
 
@@ -27,7 +30,7 @@ const SubBuildingList = (props: any) => {
       const data: subBuildingInfo_interface[] = response.data; // assuming the API response contains an array of buildings
 
       setSubBuildinglist(
-        data.map((obj: subBuildingInfo_interface) => obj.project_name)
+        data.map((obj: subBuildingInfo_interface) => obj.sub_building_name)
       );
 
       console.log(subBuildinglist)
@@ -36,29 +39,22 @@ const SubBuildingList = (props: any) => {
     }
   };
 
-  const handleBuildingChange = (event: any) => {
-    const selectedValue = event.target.value;
-    const selectedBuilding = buildingList.find(
-      (building) => building.id === selectedValue
-    );
-    setSelectedBuilding(selectedBuilding);
-  };
-
   return (
     <div>
       <DropDownList
-        data={}
+        data={subBuildinglist}
         textField="name" // assuming the building object has a "name" property
         dataItemKey="id" // assuming the building object has an "id" property
         value={selectedBuilding ? selectedBuilding.id : null}
-        onChange={handleBuildingChange}
+        // onChange={handleBuildingChange}
       />
-      {selectedBuilding && (
-        <div>
-          <h3>{selectedBuilding.name}</h3>
-          {/* Render additional building details */}
-        </div>
-      )}
+     {//SubBuildingList && (
+        //<div>
+          //<h3>{SubBuildingList.sub_building_name}</h3>
+          //{/* Render additional building details */}
+        //</div>
+      //)
+    }
     </div>
   );
 };
