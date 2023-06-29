@@ -122,6 +122,8 @@ const BuildingList = (props: any) => {
     }
   };
 
+  const headerClassName = "custom-header-cell";
+
   return (
     <div className="building-list-container">
       <Grid
@@ -143,10 +145,10 @@ const BuildingList = (props: any) => {
         filter={projectFilter}
         onFilterChange={(e: GridFilterChangeEvent) => {}}
       >
-        <GridColumn title="Building Name" field="building_name" />
-        <GridColumn title="Total Area" field="total_area" />
-        <GridColumn title="Stories" field="stories" />
-        <GridColumn title="Sub Buildings" field="sub_bldg_list" />
+        <GridColumn title="Building Name" field="building_name"  headerClassName={headerClassName} />
+        <GridColumn title="Total Area" field="total_area" headerClassName={headerClassName} />
+        <GridColumn title="Stories" field="stories" headerClassName={headerClassName} />
+        <GridColumn title="Sub Buildings" field="sub_bldg_list" headerClassName={headerClassName} />
       </Grid>
     </div>
   );
