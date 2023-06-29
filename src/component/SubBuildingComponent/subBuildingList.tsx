@@ -22,16 +22,6 @@ const SubBuildingList = (props: any) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-<<<<<<< HEAD
-        const response = await axios.get("your_api_url_here");
-        const data: subBuildingInfo_interface[] = response.data; // assuming the API response contains an array of buildings
-  
-        setSubBuildinglist(
-          data.map((obj: subBuildingInfo_interface) => obj.sub_building_name)
-        );
-  
-        console.log(subBuildinglist)
-=======
         setSelectedBuilding(props.buildingInfo);
         const response = await axios.get(
           urlPrefix.IP_port + "/asd/" + props.buildingInfo.id
@@ -44,24 +34,14 @@ const SubBuildingList = (props: any) => {
 
         console.log(data.map((obj: subBuildingInfo_interface) => obj.sub_building_name))
         console.log(subBuildinglist);
->>>>>>> 4870d75472ad3434260abce8d428acd3a6f4a39a
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-<<<<<<< HEAD
-    setSelectedBuilding(props.buildingInfo);
     fetchData();
   }, [props]);
 
- 
-
-=======
-    fetchData();
-  }, [props]);
-
->>>>>>> 4870d75472ad3434260abce8d428acd3a6f4a39a
   return (
     <div>
       <DropDownList
