@@ -31,7 +31,7 @@ const initialDataState = {
 
 //여기에 빌딩상세정보
 const DetailComponent = (props: any) => {
-  console.log(props.dataItem)
+  //console.log(props)
   return (
     <div>
       <BuildingDetail
@@ -40,7 +40,9 @@ const DetailComponent = (props: any) => {
     </div>
   );
 };
+
 const initialFilter: CompositeFilterDescriptor = {
+  //filter 여러개가 적용될때 and, or?
   logic: "and",
   filters: [{ field: "project_id", operator: "eq", value: "0" }],
 };

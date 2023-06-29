@@ -4,6 +4,7 @@ import {
   DropDownListFilterChangeEvent,
   ComboBox,
 } from "@progress/kendo-react-dropdowns";
+import { Button } from "@progress/kendo-react-buttons";
 import {
   CompositeFilterDescriptor,
   filterBy,
@@ -11,21 +12,34 @@ import {
 } from "@progress/kendo-data-query";
 import axios from "axios";
 import urlPrefix from "../../resource/URL_prefix.json";
-import {projectList_interface} from "./../../interface/projectList_interface"
+import { projectList_interface } from "./../../interface/projectList_interface";
 
+let constructionCompanyFilter: CompositeFilterDescriptor = {
+  //filter 여러개가 적용될때 and, or?
+  logic: "and",
+  filters: [{ field: "construction_company", operator: "eq", value: "" }],
+};
+let locationFilter: CompositeFilterDescriptor = {
+  //filter 여러개가 적용될때 and, or?
+  logic: "and",
+  filters: [{ field: "location", operator: "eq", value: "" }],
+};
 
-const ProjectList = (props:any) => {
+const ProjectList = (props: any) => {
   const [projectList, setProjectList] = useState<string[]>([]);
   const [selectedProjectName, setSelectedProjectName] =
     useState<string>("project를 선택해주세요");
+
+  const [filters, setFilters] = useState<CompositeFilterDescriptor[]>([]);
   const [fileteredList, setFileteredList] = useState<string[]>([]);
-  const [data, setData] = useState<projectList_interface[]>([]);
+  const [data, setData] = useState<[]>([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          urlPrefix.IP_port + "/project/id,project_name"
+          urlPrefix.IP_port + "/dashboard/project/"
         );
         const data = JSON.parse(response.data);
 
@@ -33,11 +47,10 @@ const ProjectList = (props:any) => {
           (obj: projectList_interface) => obj.project_name
         );
 
-        setData(data);
-        props.setData(data);
+        setData(data); //projectList의 project data
+        props.setData(data); //projects 페이지의 project data
         setProjectList(projectNames);
         setFileteredList(projectNames);
-      
       } catch (error) {
         console.error(error);
       }
@@ -45,6 +58,7 @@ const ProjectList = (props:any) => {
 
     fetchData();
   }, []);
+  
   const filterData = (filter: FilterDescriptor | CompositeFilterDescriptor) => {
     const data = projectList.slice();
     return filterBy(data, filter);
@@ -59,6 +73,8 @@ const ProjectList = (props:any) => {
     props.setSelectedProjectName(event.target.value);
   };
 
+  const applyFilter = () => {};
+
   return (
     <div>
       <ComboBox
@@ -69,6 +85,23 @@ const ProjectList = (props:any) => {
         filterable={true}
         style={{ width: "300px" }}
       />
+
+      <div style={{ width: "300px" }}>
+        <DropDownList
+          data={data.reduce((acc, { construction_company }) => {
+            return acc.includes(construction_company)
+              ? acc
+              : [...acc, construction_company];
+          }, [])}
+        />
+        <DropDownList
+          data={data.reduce((acc, { location }) => {
+            return acc.includes(location) ? acc : [...acc, location];
+          }, [])}
+        />
+      </div>
+
+      <Button onClick={applyFilter}>asd</Button>
     </div>
   );
 };

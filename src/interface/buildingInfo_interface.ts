@@ -12,4 +12,5 @@ export interface buildingInfo_interface {
   foundation_type: null | string;
   structure_code: null | string;
   performance_design_target: null | string;
+  project_id: number;
 }

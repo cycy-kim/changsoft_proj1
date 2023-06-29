@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   GridColumn,
@@ -9,36 +6,40 @@ import {
   getSelectedStateFromKeyDown,
   GridToolbar,
 } from "@progress/kendo-react-grid";
+import { Button } from "@progress/kendo-react-buttons";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
-import { buildingInfo_interface} from "./../../interface/buildingInfo_interface";
+import { buildingInfo_interface } from "./../../interface/buildingInfo_interface";
 
 const BuildingDetail = (props: any) => {
   const [imgPath, setImgPath] = useState<string>("");
-  const [buildingInfo , setBuildingInfo] = useState<buildingInfo_interface | undefined>();
+  const [buildingInfo, setBuildingInfo] = useState<
+    buildingInfo_interface | undefined
+  >();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(props.buildingInfo)
-        
+        console.log(props.buildingInfo);
+
         const response = await axios.get(
           urlPrefix.IP_port +
             "/project/" +
-            props.buildingInfo[0].project_id +
+            props.buildingInfo.project_id +
             "/building/" +
-            props.buildingInfo[0].id
+            props.buildingInfo.id
         );
         const data = JSON.parse(response.data);
-        const importedImagePath = await import("./../../resource/project_pictures/" +
-        data[0].project_name +
-        "/" +
-        data[0].building_name +
-        "/ScreenShot.png");
+        const importedImagePath = await import(
+          "./../../resource/project_pictures/" +
+            data[0].project_name +
+            "/" +
+            data[0].building_name +
+            "/ScreenShot.png"
+        );
 
         setBuildingInfo(props.buildingInfo);
         setImgPath(importedImagePath.default);
-        
       } catch (error) {
         console.error(error);
       }
@@ -47,29 +48,44 @@ const BuildingDetail = (props: any) => {
     fetchData();
   }, [props, imgPath]);
 
-  return <div>
-    {imgPath && <img src={imgPath} alt="Building Image" height = {"300px"} width = {"400px"}/>}
+  const onClick=()=>{
+    window.open("as" ,'_blank')
+  }
+  return (
+    <div>
+      <div style={{ width: "30%", float: "left", paddingLeft: "1%" }}>
+        {imgPath && <img src={imgPath} alt="Building Image" height="300px" />}
+      </div>
 
-    <Grid data={[props.buildingInfo]}>
-        <GridColumn field="project_name" title="프로젝트명" />
-        <GridColumn field="building_count" title="프로젝트 내 빌딩수" />
-      </Grid>
-      <Grid data={[props.buildingInfo]}>
-        <GridColumn field="building_area" title="건축면적" />
-        <GridColumn field="construction_company" title="건설회사" />
-        <GridColumn field="location" title="지역" />
-        <GridColumn field="total_area" title="문서상 연면적" />
-      </Grid>
+      <div>
+        <Button onClick = {onClick}>
+          상세보기
+        </Button>
+      </div>
+      <div style={{ width: "59%", float: "right", paddingLeft: "1%" }}>
+        <Grid data={[buildingInfo]}>
+          <GridColumn field="building_name" title="빌딩 이름" />
+        </Grid>
+        <Grid data={[buildingInfo]}>
+          <GridColumn field="total_area" title="total_area" />
+          <GridColumn field="stories" title="stories" />
+          <GridColumn field="height" title="height" />
+          <GridColumn field="construction_method" title="construction_method" />
+        </Grid>
 
-      <Grid data={[props.buildingInfo]}>
-        <GridColumn title="프로젝트 기간">
-          <GridColumn field="construction_start" title="시작일" />
-          <GridColumn field="construction_end" title="종료일" />
-          <GridColumn field="total_date" title="소요일??" />
-        </GridColumn>
-      </Grid>
-  
-  </div>;
+        <Grid data={[buildingInfo]}>
+          <GridColumn field="top_down" title="top_down" />
+          <GridColumn field="plane_shape" title="plane_shape" />
+          <GridColumn field="foundation_type" title="foundation_type" />
+          <GridColumn field="structure_code" title="structure_code" />
+          <GridColumn
+            field="performance_design_target"
+            title="performance_design_target"
+          />
+        </Grid>
+      </div>
+    </div>
+  );
 };
 
 export default BuildingDetail;
