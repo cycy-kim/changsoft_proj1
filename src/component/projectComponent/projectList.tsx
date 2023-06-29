@@ -13,27 +13,23 @@ import {
 import axios from "axios";
 import urlPrefix from "../../resource/URL_prefix.json";
 import { projectList_interface } from "./../../interface/projectList_interface";
+import {project_interface} from "./../../interface/project_interface"
 
-let constructionCompanyFilter: CompositeFilterDescriptor = {
-  //filter 여러개가 적용될때 and, or?
-  logic: "and",
-  filters: [{ field: "construction_company", operator: "eq", value: "" }],
-};
-let locationFilter: CompositeFilterDescriptor = {
-  //filter 여러개가 적용될때 and, or?
-  logic: "and",
-  filters: [{ field: "location", operator: "eq", value: "" }],
-};
-
+//{ field: "construction_company", operator: "eq", value: "" }
 const ProjectList = (props: any) => {
   const [projectList, setProjectList] = useState<string[]>([]);
   const [selectedProjectName, setSelectedProjectName] =
     useState<string>("project를 선택해주세요");
 
-  const [filters, setFilters] = useState<CompositeFilterDescriptor[]>([]);
+  const [projectFilter, setProjectFilter] = useState<CompositeFilterDescriptor>(
+    {
+      logic: "and",
+      filters: [],
+    }
+  );
   const [fileteredList, setFileteredList] = useState<string[]>([]);
-  const [data, setData] = useState<[]>([]);
-
+  const [filteredData, setFilteredData] = useState<project_interface[]>([]);
+  const [data, setData] = useState<project_interface[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +44,7 @@ const ProjectList = (props: any) => {
         );
 
         setData(data); //projectList의 project data
+        setFilteredData(data);
         props.setData(data); //projects 페이지의 project data
         setProjectList(projectNames);
         setFileteredList(projectNames);
@@ -68,19 +65,34 @@ const ProjectList = (props: any) => {
     setFileteredList(filterData(event.filter));
   };
 
-  const handleChange = (event: any) => {
+  const projectListOnChange = (event: any) => {
     setSelectedProjectName(event.target.value);
     props.setSelectedProjectName(event.target.value);
   };
 
   const applyFilter = () => {};
 
+  const construction_company_onChange = (event: any) => {
+
+    
+
+    projectFilter.filters.push({
+      field: "construction_company",
+      operator: "eq",
+      value: event.target.value,
+    });
+
+    setFilteredData(filterBy(filteredData, projectFilter));
+    console.log( filterBy(filteredData, projectFilter));
+  };
+  const location_onChange = (event: any) => {};
+
   return (
     <div>
       <ComboBox
         data={fileteredList}
         value={selectedProjectName}
-        onChange={handleChange}
+        onChange={projectListOnChange}
         onFilterChange={filterChange}
         filterable={true}
         style={{ width: "300px" }}
@@ -88,26 +100,20 @@ const ProjectList = (props: any) => {
 
       <div style={{ width: "300px" }}>
         <DropDownList
-
-          data={data.reduce((acc, { construction_company }) => {
-            return acc.includes(construction_company)
-              ? acc
-              : [...acc, construction_company];
-          }, [])}
-
-
+          onChange={construction_company_onChange}
+          data={data
+            .map((item) => item.construction_company)
+            .filter((value, index, array) => array.indexOf(value) === index)}
         />
+
         <DropDownList
-
-          data={data.reduce((acc, { location }) => {
-            return acc.includes(location) ? acc : [...acc, location];
-          }, [])}
-
-          
+          onChange={location_onChange}
+          data={data
+            .map((item) => item.location)
+            .filter((value, index, array) => array.indexOf(value) === index)}
         />
         <Button onClick={applyFilter}>apply filters</Button>
       </div>
-
     </div>
   );
 };
