@@ -9,8 +9,9 @@ import {
 import { Button } from "@progress/kendo-react-buttons";
 import axios from "axios";
 import urlPrefix from "./../../resource/URL_prefix.json";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Route, Routes } from "react-router-dom";
 import { buildingInfo_interface } from "./../../interface/buildingInfo_interface";
+import SubBuildingDetail from "./../SubBuildingComponent/subBuildingList";
 
 const BuildingDetail = (props: any) => {
   const [imgPath, setImgPath] = useState<string>("");
@@ -50,9 +51,9 @@ const BuildingDetail = (props: any) => {
   }, [props, imgPath]);
 
   const navigate = useNavigate();
-  const onClick=()=>{
+  const onClick = () => {
     navigate("/sub_building_detail");
-  }
+  };
 
   return (
     <div>
@@ -61,9 +62,7 @@ const BuildingDetail = (props: any) => {
       </div>
 
       <div>
-        <Button onClick = {onClick}>
-          상세보기
-        </Button>
+        <Button onClick={onClick}>상세보기</Button>
       </div>
       <div style={{ width: "59%", float: "right", paddingLeft: "1%" }}>
         <Grid data={[buildingInfo]}>

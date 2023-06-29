@@ -31,7 +31,7 @@ const initialDataState = {
 
 //여기에 빌딩상세정보
 const DetailComponent = (props: any) => {
-  //console.log(props)
+  props.setBuildingInfo(props.dataItem)
   return (
     <div>
       <BuildingDetail
@@ -138,7 +138,7 @@ const BuildingList = (props: any) => {
         }}
         onPageChange={pageChange}
         expandField="expanded"
-        detail={DetailComponent}
+        detail={({ dataItem }) => <DetailComponent dataItem={dataItem} setBuildingInfo = {props.setBuildingInfo} />}
         onExpandChange={expandChange}
         filter={projectFilter}
         onFilterChange={(e: GridFilterChangeEvent) => {}}

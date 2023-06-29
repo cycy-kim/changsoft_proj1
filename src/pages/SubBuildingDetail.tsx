@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { buildingInfo_interface } from "./../interface/buildingInfo_interface";
 
-const SubBuildingDetail: React.FC = () => {
+const SubBuildingDetail = (props: any) => {
+  const [buildingInfo, setBuildingInfo] = useState<
+    buildingInfo_interface | undefined
+  >();
 
-    return(<div>야미~</div>)
+  useEffect(() => {
+    setBuildingInfo(props.buildingInfo);
+  }, [props]);
 
-}
 
-export default SubBuildingDetail
+
+  return <div>{buildingInfo?.id}</div>;
+};
+
+export default SubBuildingDetail;
