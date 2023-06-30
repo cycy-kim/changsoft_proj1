@@ -31,7 +31,6 @@ const SubBuildingList = (props: any) => {
         //console.log("a")
         //console.log(data[0].sub_building_name)
         let subBuildingNames: string[] = [];
-        console.log(data.length)
         for(let i =0; i < data.length ; i++)
         {
           subBuildingNames.push(data[i].sub_building_name)

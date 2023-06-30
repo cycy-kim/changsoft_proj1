@@ -246,10 +246,10 @@ const ProjectList = (props: any) => {
         onChange={projectListOnChange}
         onFilterChange={filterChange}
         filterable={true}
-        style={{ width: "300px" }}
+        style={{ width: "50vw", height: "5vh" }}
       />
 
-      <div style={{ width: "300px" }}>
+      <div style={{ width: "50vw" }}>
         <DropDownList
           onChange={constructionCompanyOnChange}
           data={data

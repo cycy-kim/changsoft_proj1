@@ -15,8 +15,9 @@ const SubBuildingTotalAnalysisTable = (props: any) => {
             urlPrefix.IP_port +
             "/sub_building/" +
             "/analysis_table/" +
-            props.subBuildingInfo.building_id
+            props.subBuildingInfo.id
           );
+          console.log(response);
           const data = JSON.parse(response.data);
           setSubBuildingDetail(data);
         } catch (error) {
