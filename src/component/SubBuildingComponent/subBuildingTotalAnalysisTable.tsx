@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import urlPrefix from "../../resource/URL_prefix.json";
+import { Grid, GridColumn } from "@progress/kendo-react-grid";
 import { subBuildingInfo_interface } from "../../interface/subBuildingInfo_interface";
+import { subBuildingAnalysisTable_interface } from "../../interface/subBuildingAnalysisTable_interface";
 
 const SubBuildingTotalAnalysisTable = (props: any) => {
-  const [subBuildingDetail, setSubBuildingDetail] =
-    useState<subBuildingInfo_interface>();
-
-  const [buildingId, setBuildingId] = useState<number[]>();
+  const [subBuildingDetail, setSubBuildingDetail] = useState<
+  subBuildingAnalysisTable_interface[]
+  >();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,10 +18,10 @@ const SubBuildingTotalAnalysisTable = (props: any) => {
             "/building/" +
             props.buildingId +
             "/sub_building/" +
-            props.selectedSubBuildingId +
+            props.selectedSubBuilding.sub_building_id +
             "/total"
         );
-        const data: subBuildingInfo_interface = JSON.parse(response.data);
+        const data = JSON.parse(response.data);
         setSubBuildingDetail(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -28,15 +29,27 @@ const SubBuildingTotalAnalysisTable = (props: any) => {
     };
 
     fetchData();
-  }, [props.buildingId, props.selectedSubBuildingId]);
+  }, [props.buildingId, props.selectedSubBuilding]);
+
+  const headerClassName = "custom-header-cell";
 
   return (
     <div>
       {subBuildingDetail && (
         <div>
-          <h3>{subBuildingDetail.sub_building_name}</h3>
-          {/* Render additional sub building details */}
-          {/* Add more details as needed */}
+          <Grid data={subBuildingDetail}>
+            <GridColumn
+              field="column1" // Replace with the actual field name
+              title="건물명 구분" // Replace with the actual column title
+              headerClassName={headerClassName}
+            />
+            <GridColumn
+              field="total_concrete" // Replace with the actual field name
+              title="sub_building_name" // Replace with the actual column title
+              headerClassName={headerClassName}
+            />
+            {/* Add more GridColumns for each desired column */}
+          </Grid>
         </div>
       )}
     </div>
