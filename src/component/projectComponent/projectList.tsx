@@ -19,6 +19,7 @@ import axios from "axios";
 import urlPrefix from "../../resource/URL_prefix.json";
 import { projectList_interface } from "./../../interface/projectList_interface";
 import { project_interface } from "./../../interface/project_interface";
+import "./../../styles/ProjectList.scss";
 
 //{ field: "construction_company", operator: "eq", value: "" }
 const ProjectList = (props: any) => {
@@ -40,7 +41,9 @@ const ProjectList = (props: any) => {
   const [buildingAreaSliderValues, setBuildingAreaSliderValues] = useState<
     number[]
   >([]);
-  const [buildingAreaMinMax, setBuildingAreaMinMax] = useState<number[]>([0, 2500]);
+  const [buildingAreaMinMax, setBuildingAreaMinMax] = useState<number[]>([
+    0, 2500,
+  ]);
 
   const [totalAreaSliderValues, setTotalAreaSliderValues] = useState<number[]>(
     []
@@ -237,99 +240,105 @@ const ProjectList = (props: any) => {
     setTotalAreaMinMax([totalAreaMinMax[0], event.target.value]);
   };
 
-
   return (
-    <div>
+    <div className="project-list-container">
       <ComboBox
         data={fileteredList}
         value={selectedProjectName}
         onChange={projectListOnChange}
         onFilterChange={filterChange}
         filterable={true}
-        style={{ width: "50vw", height: "5vh" }}
+        className="project-combobox"
       />
-
-      <div style={{ width: "50vw" }}>
+      <div className="filter-group">
         <DropDownList
           onChange={constructionCompanyOnChange}
           data={data
             .map((item) => item.construction_company)
             .filter((value, index, array) => array.indexOf(value) === index)}
+          className="filter-dropdown"
         />
 
+        <RangeSlider
+          defaultValue={{
+            start: buildingAreaMinMax[0],
+            end: buildingAreaMinMax[1],
+          }}
+          step={1}
+          min={0}
+          max={buildingAreaSliderValues[0]}
+          onChange={buildingAreaSliderOnClick}
+          className="range-slider"
+        >
+          {buildingAreaSliderValues.map((perc, i) => (
+            <SliderLabel key={i} position={perc}>
+              {perc.toString()}
+            </SliderLabel>
+          ))}
+        </RangeSlider>
+
+        <TextBox
+          value={buildingAreaMinMax[0]}
+          onChange={handleBuildingAreaMinTextChange}
+          contentEditable={true}
+          rounded={"large"}
+          className="slider-textbox"
+        ></TextBox>
+        <TextBox
+          value={buildingAreaMinMax[1]}
+          onChange={handleBuildingAreaMaxTextChange}
+          contentEditable={true}
+          rounded={"large"}
+          className="slider-textbox"
+        ></TextBox>
+      </div>
+
+      <div className="filter-group">
         <DropDownList
           onChange={locationOnChange}
           data={data
             .map((item) => item.location)
             .filter((value, index, array) => array.indexOf(value) === index)}
+          className="filter-dropdown"
         />
 
-        <div style={{ width: "100px" }}>
-          <RangeSlider
-            defaultValue={{
-              start: buildingAreaMinMax[0],
-              end: buildingAreaMinMax[1],
-            }}
-            step={1}
-            min={0}
-            max={buildingAreaSliderValues[0]}
-            onChange={buildingAreaSliderOnClick}
-          >
-            {buildingAreaSliderValues.map((perc, i) => (
-              <SliderLabel key={i} position={perc}>
-                {perc.toString()}
-              </SliderLabel>
-            ))}
-          </RangeSlider>
+        <RangeSlider
+          defaultValue={{
+            start: totalAreaMinMax[0],
+            end: totalAreaMinMax[1],
+          }}
+          step={1}
+          min={0}
+          max={totalAreaSliderValues[0]}
+          onChange={totalAreaSliderOnClick}
+          className="range-slider"
+        >
+          {totalAreaSliderValues.map((perc, i) => (
+            <SliderLabel key={i} position={perc}>
+              {perc.toString()}
+            </SliderLabel>
+          ))}
+        </RangeSlider>
 
-          <TextBox
-            value={buildingAreaMinMax[0]}
-            onChange={handleBuildingAreaMinTextChange}
-            contentEditable={true}
-            rounded={"large"}
-          ></TextBox>
-          <TextBox
-            value={buildingAreaMinMax[1]}
-            onChange={handleBuildingAreaMaxTextChange}
-            contentEditable={true}
-            rounded={"large"}
-          ></TextBox>
-        </div>
-
-        <div style={{ width: "100px" }}>
-          <RangeSlider
-            defaultValue={{
-              start: totalAreaMinMax[0],
-              end: totalAreaMinMax[1],
-            }}
-            step={1}
-            min={0}
-            max={totalAreaSliderValues[0]}
-            onChange={totalAreaSliderOnClick}
-          >
-            {totalAreaSliderValues.map((perc, i) => (
-              <SliderLabel key={i} position={perc}>
-                {perc.toString()}
-              </SliderLabel>
-            ))}
-          </RangeSlider>
-
-          <TextBox
-            value={totalAreaMinMax[0]}
-            onChange={handleTotalAreaMinTextChange}
-            contentEditable={true}
-            rounded={"large"}
-          ></TextBox>
-          <TextBox
-            value={totalAreaMinMax[1]}
-            onChange={handleTotalAreaMaxTextChange}
-            contentEditable={true}
-            rounded={"large"}
-          ></TextBox>
-        </div>
-
-        <Button onClick={applyFilter}>apply filters</Button>
+        <TextBox
+          value={totalAreaMinMax[0]}
+          onChange={handleTotalAreaMinTextChange}
+          contentEditable={true}
+          rounded={"large"}
+          className="slider-textbox"
+        ></TextBox>
+        <TextBox
+          value={totalAreaMinMax[1]}
+          onChange={handleTotalAreaMaxTextChange}
+          contentEditable={true}
+          rounded={"large"}
+          className="slider-textbox"
+        ></TextBox>
       </div>
+
+      <Button onClick={applyFilter} className="apply-filter-button">
+        apply filters
+      </Button>
     </div>
   );
 };
