@@ -18,6 +18,13 @@ interface projectsFloorCount {
   item_count: number;
 }
 
+const categoryContent = (e: any) => {
+  return (
+    "&nbsp;&nbsp;" +
+    (e.range_num * 10).toString()
+  );
+};
+
 const FloorCount = () => {
   const [totalfloor, setTotalfloor] = useState<projectsFloorCount[]>([]);
 
@@ -51,8 +58,7 @@ const FloorCount = () => {
       <Chart style={{ height: "36vh" }}>
         <ChartCategoryAxis>
           <ChartCategoryAxisItem
-            categories={totalfloor.map((obj) =>
-              (obj.range_num * 10).toString()
+            categories={totalfloor.map(categoryContent
             )}
           >
             <ChartCategoryAxisTitle text="Floors" />
