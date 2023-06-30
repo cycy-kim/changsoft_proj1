@@ -5,13 +5,9 @@ import SubBuildingTotalAnalysisTable from "../component/SubBuildingComponent/sub
 import { subBuildingInfo_interface } from "../interface/subBuildingInfo_interface";
 
 const SubBuildingDetail = (props: any) => {
-  const [buildingInfo, setBuildingInfo] = useState<
-    buildingInfo_interface | undefined
-  >();
+  const [buildingInfo, setBuildingInfo] = useState<buildingInfo_interface | undefined>();
 
-  const [subBuildingInfo, setSubBuildingInfo] = useState<
-  subBuildingInfo_interface | undefined
->();
+  const [subBuildingInfo, setSubBuildingInfo] = useState<subBuildingInfo_interface | undefined>();
 
   useEffect(() => {
     setBuildingInfo(props.buildingInfo);
@@ -19,10 +15,10 @@ const SubBuildingDetail = (props: any) => {
 
   return (
     <div className="sub-building-list">
-      <SubBuildingList buildingInfo = {buildingInfo} />
+      <SubBuildingList buildingInfo={buildingInfo} />
 
       <div className="sub-building-detail">
-        <SubBuildingTotalAnalysisTable buildingId = {buildingInfo?.id} subBuildingDetail = {subBuildingInfo} />
+        <SubBuildingTotalAnalysisTable buildingId={buildingInfo?.id} subBuildingInfo={subBuildingInfo} />
       </div>
     </div>
   );
